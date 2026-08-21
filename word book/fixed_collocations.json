@@ -1,0 +1,3389 @@
+{
+  "categories": {
+    "动词类/Group1": [
+      {
+        "collocation": "differ from...",
+        "meaning": "与.....不同"
+      },
+      {
+        "collocation": "interact with sth.",
+        "meaning": "与某物相互作用"
+      },
+      {
+        "collocation": "have to do with...",
+        "meaning": "与....有关系"
+      },
+      {
+        "collocation": "have little to do with...",
+        "meaning": "和...关系不大"
+      },
+      {
+        "collocation": "have nothing to do with...",
+        "meaning": "与....无关"
+      },
+      {
+        "collocation": "compare A to/with B",
+        "meaning": "将A与B进行比较"
+      },
+      {
+        "collocation": "compare A to B",
+        "meaning": "将A比作B"
+      },
+      {
+        "collocation": "go up",
+        "meaning": "上升"
+      },
+      {
+        "collocation": "serve sth. up/serve up sth.",
+        "meaning": "端上（食物）"
+      },
+      {
+        "collocation": "move in with sb.",
+        "meaning": "搬来和某人一起居住"
+      },
+      {
+        "collocation": "come across",
+        "meaning": "让人觉得"
+      },
+      {
+        "collocation": "keep an eye out for...",
+        "meaning": "密切注意..."
+      },
+      {
+        "collocation": "connect with sb.",
+        "meaning": "与某人建立良好关系"
+      },
+      {
+        "collocation": "differentiate between A and B",
+        "meaning": "区分A"
+      },
+      {
+        "collocation": "introduce A to B",
+        "meaning": "把A介绍给B"
+      },
+      {
+        "collocation": "cooperate with sb.",
+        "meaning": "与某人合作"
+      },
+      {
+        "collocation": "participate in sth.",
+        "meaning": "参与某事"
+      },
+      {
+        "collocation": "prompt sb. to do sth.",
+        "meaning": "促使某人做某事"
+      },
+      {
+        "collocation": "favor A over B",
+        "meaning": "偏祖A而非B"
+      },
+      {
+        "collocation": "keep A away from B",
+        "meaning": "不让A接近B"
+      },
+      {
+        "collocation": "keep away from...",
+        "meaning": "远离......"
+      },
+      {
+        "collocation": "suffer from..",
+        "meaning": "患·病；遭受.."
+      },
+      {
+        "collocation": "be e f...up/be e f up...",
+        "meaning": "提高......"
+      }
+    ],
+    "动词类/Group2": [
+      {
+        "collocation": "end up with...",
+        "meaning": "以而告终"
+      },
+      {
+        "collocation": "end up doing sth.",
+        "meaning": "以做某事结束"
+      },
+      {
+        "collocation": "show up",
+        "meaning": "到达；出现"
+      },
+      {
+        "collocation": "manage to do sth.",
+        "meaning": "设法做成某事"
+      },
+      {
+        "collocation": "draw sb. to...",
+        "meaning": "将某人吸引到."
+      },
+      {
+        "collocation": "refer to A as B",
+        "meaning": "把A称作B"
+      },
+      {
+        "collocation": "refer to...",
+        "meaning": "提到....."
+      },
+      {
+        "collocation": "keep track of...",
+        "meaning": "了解....·的动态"
+      },
+      {
+        "collocation": "depend on sth.",
+        "meaning": "取决于某物"
+      },
+      {
+        "collocation": "depend on...",
+        "meaning": "依赖....."
+      },
+      {
+        "collocation": "result in...",
+        "meaning": "导致....."
+      },
+      {
+        "collocation": "flow from sth.",
+        "meaning": "来自某物"
+      },
+      {
+        "collocation": "react to sth.",
+        "meaning": "对某事做出反应"
+      },
+      {
+        "collocation": "d i e down",
+        "meaning": "逐渐平息"
+      },
+      {
+        "collocation": "stick to sth.",
+        "meaning": "固守某事"
+      },
+      {
+        "collocation": "stick with...",
+        "meaning": "坚持......"
+      },
+      {
+        "collocation": "stick it out",
+        "meaning": "坚持到底"
+      },
+      {
+        "collocation": "provide sth. for sb.",
+        "meaning": "为某人提供某物"
+      },
+      {
+        "collocation": "provide sb. with sth.",
+        "meaning": "提供某物给某人"
+      },
+      {
+        "collocation": "bring sth. about/bring about sth.",
+        "meaning": "导"
+      }
+    ],
+    "unsorted": [
+      {
+        "collocation": "point...out/point out...",
+        "meaning": "指出."
+      },
+      {
+        "collocation": "free sb. from sth",
+        "meaning": "使某人摆脱某物"
+      },
+      {
+        "collocation": "make sth. up/make up sth.",
+        "meaning": "组成某物"
+      },
+      {
+        "collocation": ".make up for...",
+        "meaning": "弥补......"
+      },
+      {
+        "collocation": "benefit from..",
+        "meaning": "得益于..."
+      },
+      {
+        "collocation": "start over",
+        "meaning": "重新开始"
+      },
+      {
+        "collocation": "be l in k e d to..",
+        "meaning": "与.有关联"
+      },
+      {
+        "collocation": "so r t...out/so r to u t..",
+        "meaning": "解决（难题或困境）"
+      },
+      {
+        "collocation": "speak of sth.",
+        "meaning": "表明某事"
+      },
+      {
+        "collocation": "take place(",
+        "meaning": "尤指根据安排或计划)发生"
+      },
+      {
+        "collocation": "go on",
+        "meaning": "发生"
+      },
+      {
+        "collocation": "cut down on sth.",
+        "meaning": "削减（尺寸、数量或"
+      },
+      {
+        "collocation": ".get sth. out of...",
+        "meaning": "从.....中获得（有益"
+      },
+      {
+        "collocation": "d r i v e sb. to do sth.",
+        "meaning": "驱使某人做某事"
+      },
+      {
+        "collocation": ".throw one s e l f into...",
+        "meaning": "投身于....."
+      },
+      {
+        "collocation": "be tempt e d to do sth.",
+        "meaning": "忍不住做某事"
+      },
+      {
+        "collocation": "d i v i d e A by B A",
+        "meaning": "除以B"
+      },
+      {
+        "collocation": "multiply A by B A",
+        "meaning": "乘以B"
+      },
+      {
+        "collocation": "c o m m u n i c at e with sb.",
+        "meaning": "与某人交流"
+      },
+      {
+        "collocation": "g a in sth. from...",
+        "meaning": "从...中得到（好处）"
+      },
+      {
+        "collocation": "g u a r d against sth.",
+        "meaning": "提防某事"
+      },
+      {
+        "collocation": "c l in g to..",
+        "meaning": "紧紧抓住...不放"
+      },
+      {
+        "collocation": "persuade sb. into doing sth.",
+        "meaning": "劝说某人"
+      },
+      {
+        "collocation": "get away from...",
+        "meaning": "离开....."
+      },
+      {
+        "collocation": "set the to n e for...",
+        "meaning": "为..确定基调"
+      },
+      {
+        "collocation": "go off（",
+        "meaning": "食物、饮料）变质"
+      },
+      {
+        "collocation": "come in hand y",
+        "meaning": "有用处"
+      },
+      {
+        "collocation": "turn sth. on its head",
+        "meaning": "使人完全改变思"
+      },
+      {
+        "collocation": "pay a p r i c e for...",
+        "meaning": "因....付出代价"
+      },
+      {
+        "collocation": "make a difference",
+        "meaning": "有作用"
+      },
+      {
+        "collocation": "r e n e g e on sth.",
+        "meaning": "违背（诺言）"
+      },
+      {
+        "collocation": "subscribe to...",
+        "meaning": "订阅..."
+      },
+      {
+        "collocation": "put an end to sth.",
+        "meaning": "结束某事"
+      },
+      {
+        "collocation": "w a d e into sth.",
+        "meaning": "介入某事"
+      },
+      {
+        "collocation": "c h e w sth. up/c h e w up sth.",
+        "meaning": "毁坏某物"
+      },
+      {
+        "collocation": "write sth. down/write down",
+        "meaning": ""
+      },
+      {
+        "collocation": "take the lead",
+        "meaning": "领先"
+      },
+      {
+        "collocation": "r o l l sth. out/r o l l out sth.",
+        "meaning": "实行（新制度）"
+      },
+      {
+        "collocation": "plan on doing sth.",
+        "meaning": "打算做某事"
+      },
+      {
+        "collocation": "give or take..",
+        "meaning": "相差不到"
+      },
+      {
+        "collocation": "stand at...",
+        "meaning": "有水平（数量）"
+      },
+      {
+        "collocation": "r e in...in/r e in in...",
+        "meaning": "严格控制.."
+      },
+      {
+        "collocation": "shy away from sth.（",
+        "meaning": "因缺乏信心、担心"
+      },
+      {
+        "collocation": "grow out of sth.",
+        "meaning": "因长大而改掉某习惯"
+      },
+      {
+        "collocation": "get out of control",
+        "meaning": "失去控制"
+      },
+      {
+        "collocation": "be l in k e d to...",
+        "meaning": "与.有联系"
+      },
+      {
+        "collocation": "m e s s sth. up/m e s s up sth.",
+        "meaning": "把某事弄糟"
+      },
+      {
+        "collocation": "hint at sth.",
+        "meaning": "暗示某事"
+      },
+      {
+        "collocation": "t h u m b through sth.",
+        "meaning": "快速翻阅某物"
+      },
+      {
+        "collocation": "s t r u g g l e against...",
+        "meaning": "与....斗争"
+      },
+      {
+        "collocation": "make f u no f..",
+        "meaning": "拿....开玩笑"
+      },
+      {
+        "collocation": "buy into sth.",
+        "meaning": "信从某事"
+      },
+      {
+        "collocation": "talk of sth.",
+        "meaning": "谈论某事"
+      },
+      {
+        "collocation": "w ear of",
+        "meaning": "逐渐消失"
+      },
+      {
+        "collocation": "would like to do sth.",
+        "meaning": "想要做某事"
+      },
+      {
+        "collocation": "a i m to do sth.",
+        "meaning": "旨在做某事"
+      },
+      {
+        "collocation": ".line...up/line up...",
+        "meaning": "安排..."
+      },
+      {
+        "collocation": "take r o o t",
+        "meaning": "深入人心"
+      },
+      {
+        "collocation": "s p are no e f for t",
+        "meaning": "不遗余力"
+      },
+      {
+        "collocation": "give rise to sth.",
+        "meaning": "引起某事"
+      },
+      {
+        "collocation": "integrate A into B",
+        "meaning": "把A并入B"
+      },
+      {
+        "collocation": "slow down",
+        "meaning": "放松"
+      },
+      {
+        "collocation": ".run away from...",
+        "meaning": "逃离....."
+      },
+      {
+        "collocation": "work on sth.",
+        "meaning": "努力改善（或完成）某事"
+      },
+      {
+        "collocation": "s u r v i v e on sth.",
+        "meaning": "靠某物生存"
+      },
+      {
+        "collocation": "g u e s s at...",
+        "meaning": "猜测...."
+      },
+      {
+        "collocation": "fall behind...",
+        "meaning": "落后于......"
+      },
+      {
+        "collocation": "pass through s p.",
+        "meaning": "经过某地"
+      },
+      {
+        "collocation": "s t r u g g l e to do sth.",
+        "meaning": "努力做某事"
+      },
+      {
+        "collocation": "g r a d u at e from...",
+        "meaning": "从.....毕业"
+      },
+      {
+        "collocation": "look back",
+        "meaning": "回顾"
+      },
+      {
+        "collocation": "a d r o p in the o c e an",
+        "meaning": "沧海一粟"
+      },
+      {
+        "collocation": "a b at t e r y of...",
+        "meaning": "连串...."
+      },
+      {
+        "collocation": ".thank s to..",
+        "meaning": "因为...."
+      },
+      {
+        "collocation": "as e n s e of...",
+        "meaning": "一种..·的感觉"
+      },
+      {
+        "collocation": "as i g no f...",
+        "meaning": "种...的迹象"
+      },
+      {
+        "collocation": "on the v e r g e of...",
+        "meaning": "即将..."
+      },
+      {
+        "collocation": "in the w a k e of...",
+        "meaning": "随...之后而来"
+      },
+      {
+        "collocation": "in some way s",
+        "meaning": "在某种程度上"
+      },
+      {
+        "collocation": "in need of sth.",
+        "meaning": "需要（帮助、建议、金"
+      },
+      {
+        "collocation": "in e x change for...",
+        "meaning": "作为对...的交换"
+      },
+      {
+        "collocation": "be e a g e r to do sth.",
+        "meaning": "渴望做某事"
+      },
+      {
+        "collocation": "been t h u s i as t i c about doing sth.",
+        "meaning": "热心"
+      },
+      {
+        "collocation": "be responsible for sth.",
+        "meaning": "是某事的原因"
+      },
+      {
+        "collocation": "be immune to sth.",
+        "meaning": "不受某物影响"
+      },
+      {
+        "collocation": "be engage d in sth.",
+        "meaning": "从事某事"
+      },
+      {
+        "collocation": "be vulnerable to...",
+        "meaning": "易受.·的影响;"
+      },
+      {
+        "collocation": "be essential to sth.",
+        "meaning": "对某物很重要"
+      },
+      {
+        "collocation": "be similar to...",
+        "meaning": "与相似"
+      },
+      {
+        "collocation": "be in c line d to do sth.",
+        "meaning": "倾向于做某事"
+      },
+      {
+        "collocation": "be jealous of...",
+        "meaning": "妒忌......"
+      },
+      {
+        "collocation": "be optimistic about sth.",
+        "meaning": "对某事持乐观"
+      },
+      {
+        "collocation": "be a p p l i c a b l e to...",
+        "meaning": "适用于...."
+      },
+      {
+        "collocation": "be sensitive to sth.",
+        "meaning": "对某物敏感"
+      },
+      {
+        "collocation": "be indifferent to..",
+        "meaning": "对....漠不关心"
+      },
+      {
+        "collocation": "be r e l i an to n...",
+        "meaning": "依赖....."
+      },
+      {
+        "collocation": "be a c c u s to m e d to(doing)sth.",
+        "meaning": "习惯于"
+      },
+      {
+        "collocation": "be o c c up i e d with sth.",
+        "meaning": "忙于某事"
+      },
+      {
+        "collocation": "be suitable to do sth.",
+        "meaning": "适合做某事"
+      },
+      {
+        "collocation": "be ready for sth.",
+        "meaning": "为某事做好准备"
+      },
+      {
+        "collocation": "be ready to do sth.",
+        "meaning": "愿意做某事"
+      },
+      {
+        "collocation": "be fascinate d by sth.",
+        "meaning": "对某物入迷"
+      },
+      {
+        "collocation": "be good for...",
+        "meaning": "对...有好处"
+      },
+      {
+        "collocation": "be good at(doing)sth.",
+        "meaning": "擅长（做）某事"
+      },
+      {
+        "collocation": "be s k i l l e d at doing sth.",
+        "meaning": "擅长做某事"
+      },
+      {
+        "collocation": "be interest e d in...",
+        "meaning": "对...·感兴趣"
+      },
+      {
+        "collocation": "be c on d u c i veto sth.",
+        "meaning": "使某事容易发生"
+      },
+      {
+        "collocation": "be d e s p e r at e for sth.",
+        "meaning": "非常需要某物"
+      },
+      {
+        "collocation": "be c e n t r a l to sth.",
+        "meaning": "对某物至关重要"
+      },
+      {
+        "collocation": "no long e r",
+        "meaning": "不再"
+      },
+      {
+        "collocation": "once and for all",
+        "meaning": "彻底地"
+      },
+      {
+        "collocation": "in and out of s p.",
+        "meaning": "时常出入某地"
+      },
+      {
+        "collocation": "as always",
+        "meaning": "和往常一样"
+      },
+      {
+        "collocation": "so far",
+        "meaning": "迄今为止"
+      },
+      {
+        "collocation": "by and large",
+        "meaning": "大体上"
+      },
+      {
+        "collocation": "worst of all",
+        "meaning": "最糟糕的是"
+      },
+      {
+        "collocation": "all too",
+        "meaning": "非常"
+      },
+      {
+        "collocation": "back and forth",
+        "meaning": "反复来回"
+      },
+      {
+        "collocation": "be up to sb.",
+        "meaning": "由某人决定"
+      },
+      {
+        "collocation": "sure enough",
+        "meaning": ""
+      },
+      {
+        "collocation": "be out to do sth.",
+        "meaning": "试图做某事"
+      },
+      {
+        "collocation": "be down to sb.",
+        "meaning": "由某人负责"
+      },
+      {
+        "collocation": "first and for e most",
+        "meaning": "首先"
+      },
+      {
+        "collocation": "not n e c e s s a r i l y",
+        "meaning": "不一定"
+      },
+      {
+        "collocation": "rig h t away",
+        "meaning": "马上"
+      },
+      {
+        "collocation": "more often than not",
+        "meaning": "通常"
+      },
+      {
+        "collocation": ".not...any more",
+        "meaning": "不再...."
+      },
+      {
+        "collocation": "all the more",
+        "meaning": "更加"
+      },
+      {
+        "collocation": "as...as possible",
+        "meaning": "尽可能....."
+      },
+      {
+        "collocation": "late r on",
+        "meaning": "以后"
+      },
+      {
+        "collocation": "anything but...",
+        "meaning": "根本不......"
+      },
+      {
+        "collocation": "to name but a few",
+        "meaning": "略举几个例子"
+      },
+      {
+        "collocation": "to be sure",
+        "meaning": "诚然"
+      },
+      {
+        "collocation": "to say the least",
+        "meaning": "至少可以说"
+      },
+      {
+        "collocation": "or so",
+        "meaning": "大约"
+      },
+      {
+        "collocation": "more than anything",
+        "meaning": ""
+      },
+      {
+        "collocation": "and so forth",
+        "meaning": "等等"
+      },
+      {
+        "collocation": "t h o u s and so f...",
+        "meaning": "成千上万的...."
+      },
+      {
+        "collocation": "other than...",
+        "meaning": "除.....以外"
+      },
+      {
+        "collocation": "no less than...",
+        "meaning": "多达....."
+      },
+      {
+        "collocation": "no more than...",
+        "meaning": "只不过.."
+      },
+      {
+        "collocation": "to be honest",
+        "meaning": "说实话"
+      },
+      {
+        "collocation": "all of as u d d e n",
+        "meaning": "突然"
+      },
+      {
+        "collocation": "l e t alone...",
+        "meaning": "更不用说"
+      },
+      {
+        "collocation": "so/as long as...",
+        "meaning": "只要..."
+      },
+      {
+        "collocation": "now that...",
+        "meaning": "既然....;由于....."
+      },
+      {
+        "collocation": "as well as...",
+        "meaning": "以及....."
+      },
+      {
+        "collocation": "as t h o u g h...",
+        "meaning": "好像."
+      },
+      {
+        "collocation": "as soon as.........",
+        "meaning": "就...."
+      },
+      {
+        "collocation": "even if...",
+        "meaning": "即使....."
+      },
+      {
+        "collocation": "as yet",
+        "meaning": "直到现在"
+      }
+    ],
+    "动词类/Group3": [
+      {
+        "collocation": "c o m b in e A and B",
+        "meaning": "使A和B相结合"
+      },
+      {
+        "collocation": "respond to...",
+        "meaning": "回应.."
+      },
+      {
+        "collocation": "t end to do sth.",
+        "meaning": "往往会做某事"
+      },
+      {
+        "collocation": "appeal to sb.",
+        "meaning": "对某人有吸引力"
+      },
+      {
+        "collocation": ".consist of...",
+        "meaning": "由...组成"
+      },
+      {
+        "collocation": "attach A to B",
+        "meaning": "把A固定在B上"
+      },
+      {
+        "collocation": "d e v o t eAt o B",
+        "meaning": "把A用于B"
+      },
+      {
+        "collocation": "d e v o t e one s e l f to...",
+        "meaning": "致力于...."
+      },
+      {
+        "collocation": "apply A to B",
+        "meaning": "把A应用于B"
+      },
+      {
+        "collocation": ".apply to...",
+        "meaning": "适用于...."
+      },
+      {
+        "collocation": "apply for...",
+        "meaning": "申请....."
+      },
+      {
+        "collocation": "draw in（",
+        "meaning": "白昼）渐短"
+      },
+      {
+        "collocation": "put...for w a r d/put for w a r d...",
+        "meaning": "提出......"
+      },
+      {
+        "collocation": "get sth. over(to sb.)/get over sth.(to",
+        "meaning": ""
+      },
+      {
+        "collocation": "carry sth. on/carry on sth.",
+        "meaning": "继续做某事"
+      },
+      {
+        "collocation": "come to sth.",
+        "meaning": "达到（某状况，尤指坏的"
+      },
+      {
+        "collocation": "am o u n t to...",
+        "meaning": "总计..相当于..."
+      },
+      {
+        "collocation": "d e c or at e A with B",
+        "meaning": "用B装饰A"
+      },
+      {
+        "collocation": "continue to do sth.",
+        "meaning": "继续做某事"
+      },
+      {
+        "collocation": "set in（",
+        "meaning": "尤指不愉快的事）开始"
+      },
+      {
+        "collocation": "melt into sth.",
+        "meaning": "逐渐与某物成为一体"
+      },
+      {
+        "collocation": "work to do sth.",
+        "meaning": "尽力做某事"
+      },
+      {
+        "collocation": "see k to do sth.",
+        "meaning": "试图做某事"
+      }
+    ],
+    "动词类/Group4": [
+      {
+        "collocation": "bring sth. out/bring out sth.",
+        "meaning": "使某物显现"
+      },
+      {
+        "collocation": "prove one s e l f to be...",
+        "meaning": "证明自己是"
+      },
+      {
+        "collocation": ".d is a p prove of...",
+        "meaning": "反对...."
+      },
+      {
+        "collocation": "separate A from B",
+        "meaning": "从B中分离A"
+      },
+      {
+        "collocation": "s in g l e...out/s in g l e out...",
+        "meaning": "单独挑出.."
+      },
+      {
+        "collocation": "v o test h.down/v o t e down sth.",
+        "meaning": "投票否"
+      },
+      {
+        "collocation": "impose A on B",
+        "meaning": "把A强加于B"
+      },
+      {
+        "collocation": "permit sb. to do sth.",
+        "meaning": "允许某人做某事"
+      },
+      {
+        "collocation": "s h u t...up in...",
+        "meaning": "把.....关在......"
+      },
+      {
+        "collocation": "come down with sth.",
+        "meaning": "患（小病）"
+      },
+      {
+        "collocation": "be d e sign e d to do sth.",
+        "meaning": "为做某事而设"
+      },
+      {
+        "collocation": "view A as B",
+        "meaning": "把A视为B"
+      },
+      {
+        "collocation": "p has e sth. in/p has e in sth.",
+        "meaning": "分阶段开"
+      },
+      {
+        "collocation": "search for...",
+        "meaning": "搜寻...."
+      },
+      {
+        "collocation": "s p end...doing sth.",
+        "meaning": "花（时间）做某事"
+      },
+      {
+        "collocation": "follow from..",
+        "meaning": "是.的必然结果"
+      },
+      {
+        "collocation": "relate to...",
+        "meaning": "与..相关"
+      }
+    ],
+    "动词类/Group5": [
+      {
+        "collocation": "throw sth. out/throw out sth.",
+        "meaning": "否决（建"
+      },
+      {
+        "collocation": "c r y out for...",
+        "meaning": "迫切需要....."
+      },
+      {
+        "collocation": "work out",
+        "meaning": "成功地发展"
+      },
+      {
+        "collocation": "work...out/work out...",
+        "meaning": "找....的答案"
+      },
+      {
+        "collocation": "r an g e from A to B（",
+        "meaning": "价格等）在A到B"
+      },
+      {
+        "collocation": "f row no n sth.",
+        "meaning": "不赞成某事"
+      },
+      {
+        "collocation": "set...aside/set aside...",
+        "meaning": "留出....·把..."
+      },
+      {
+        "collocation": "take account of sth.",
+        "meaning": "考虑到某事"
+      },
+      {
+        "collocation": "leave...out of account",
+        "meaning": "对.....不予考虑"
+      },
+      {
+        "collocation": "base A on B A",
+        "meaning": "以B为基础"
+      },
+      {
+        "collocation": "agree on sth.",
+        "meaning": "就某事达成一致意见"
+      },
+      {
+        "collocation": "account for...（",
+        "meaning": "数量上、比例上）占"
+      },
+      {
+        "collocation": "engage in...",
+        "meaning": "从事..."
+      },
+      {
+        "collocation": "d at e back to...",
+        "meaning": "自....至今"
+      },
+      {
+        "collocation": "be s up p o s e d to be...",
+        "meaning": "应当是."
+      },
+      {
+        "collocation": "connect A to B",
+        "meaning": "连接A和B"
+      },
+      {
+        "collocation": "contribute to...",
+        "meaning": "促成..."
+      },
+      {
+        "collocation": "s h e d light on sth.",
+        "meaning": "使（问题等）较容易"
+      },
+      {
+        "collocation": "d e a l with sth.",
+        "meaning": "处理某事"
+      },
+      {
+        "collocation": "d e a l with sb.",
+        "meaning": "与某人打交道"
+      }
+    ],
+    "动词类/Group6": [
+      {
+        "collocation": "a c to n sth.",
+        "meaning": "根据（建议、信息等）行事"
+      },
+      {
+        "collocation": "go beyond sth.",
+        "meaning": "超过某事"
+      },
+      {
+        "collocation": "i m p in g e on...",
+        "meaning": "对...不利"
+      },
+      {
+        "collocation": "plead for sth.",
+        "meaning": "愿求某事"
+      },
+      {
+        "collocation": "s i d e with sb.",
+        "meaning": "支持某人"
+      },
+      {
+        "collocation": "r u l e...out/r u l e out...",
+        "meaning": "排除......"
+      },
+      {
+        "collocation": "b an k on...",
+        "meaning": "指望....."
+      },
+      {
+        "collocation": "get out of sth.",
+        "meaning": "放弃某物"
+      },
+      {
+        "collocation": "make sense",
+        "meaning": "是明智的"
+      },
+      {
+        "collocation": "believe in..",
+        "meaning": "相信..正确"
+      },
+      {
+        "collocation": "go about doing sth.",
+        "meaning": "开始做某事"
+      },
+      {
+        "collocation": "warn of sth.",
+        "meaning": "警告某事"
+      },
+      {
+        "collocation": "strive to do sth.",
+        "meaning": "努力做某事"
+      },
+      {
+        "collocation": "stand down（",
+        "meaning": "从重要职位上）退下"
+      },
+      {
+        "collocation": "run out",
+        "meaning": "耗尽"
+      },
+      {
+        "collocation": "go through sth.",
+        "meaning": "检查某物；详细研究"
+      },
+      {
+        "collocation": "been t it l e d to sth.",
+        "meaning": "有权享有某物"
+      }
+    ],
+    "动词类/Group7": [
+      {
+        "collocation": "d r i v e sth. h o m e",
+        "meaning": "把某事讲透彻"
+      },
+      {
+        "collocation": "exclude sb. from...",
+        "meaning": "不准某人进入...."
+      },
+      {
+        "collocation": "p i l e into...",
+        "meaning": "拥进....."
+      },
+      {
+        "collocation": "draw sb. into sth.",
+        "meaning": "使某人参与某事"
+      },
+      {
+        "collocation": "set...up/set up...",
+        "meaning": "设立...."
+      },
+      {
+        "collocation": "deprive sb. of sth.",
+        "meaning": "使某人不能享有某物"
+      },
+      {
+        "collocation": "fall outside sth.",
+        "meaning": "超出（能力、理解、考虑、"
+      },
+      {
+        "collocation": "set...back/set back...",
+        "meaning": "阻碍...."
+      },
+      {
+        "collocation": "work through sth.",
+        "meaning": "解决（问题)"
+      },
+      {
+        "collocation": "k no c k sth. off/k no c k off sth.",
+        "meaning": "迅速而轻"
+      },
+      {
+        "collocation": "s w it c h to...",
+        "meaning": "改变为....."
+      },
+      {
+        "collocation": "comply with sth.",
+        "meaning": "遵从某事"
+      },
+      {
+        "collocation": "set off",
+        "meaning": "出发"
+      },
+      {
+        "collocation": "set sth. off/set off sth.",
+        "meaning": "引发某事"
+      },
+      {
+        "collocation": "go it alone",
+        "meaning": "单独行动"
+      },
+      {
+        "collocation": "in t rude on...",
+        "meaning": "侵入......"
+      },
+      {
+        "collocation": "c on f l i c t with..",
+        "meaning": "与..相抵触"
+      },
+      {
+        "collocation": "k no c k sth. out/k no c k out sth.",
+        "meaning": "破坏某物"
+      },
+      {
+        "collocation": ".lead to...",
+        "meaning": "导致....."
+      }
+    ],
+    "动词类/Group8": [
+      {
+        "collocation": "set sth. out/set out sth.（",
+        "meaning": "有条理地）陈"
+      },
+      {
+        "collocation": "keep...in mind.",
+        "meaning": "将....记在心中"
+      },
+      {
+        "collocation": "carry...out/carry out...",
+        "meaning": "进行....."
+      },
+      {
+        "collocation": "think of A as B",
+        "meaning": "把A视为 B"
+      },
+      {
+        "collocation": "a c t as..．",
+        "meaning": "起到的作用"
+      },
+      {
+        "collocation": "correspond to sth.",
+        "meaning": "与...相一致"
+      },
+      {
+        "collocation": "get r i do f sb.",
+        "meaning": "赶走某人"
+      },
+      {
+        "collocation": "d r i v e sb. away/d r i v e away sb.",
+        "meaning": "赶跑某人"
+      },
+      {
+        "collocation": "c l am p down",
+        "meaning": "压制"
+      },
+      {
+        "collocation": "s t a y put",
+        "meaning": "留在原地"
+      },
+      {
+        "collocation": "s t r i k e sb. as sth.",
+        "meaning": "给某人以某种印象"
+      },
+      {
+        "collocation": "b o o t up sth.",
+        "meaning": "启动（计算机)"
+      }
+    ],
+    "动词类/Group9": [
+      {
+        "collocation": "pick up（",
+        "meaning": "贸易或经济）好转"
+      },
+      {
+        "collocation": "come out",
+        "meaning": "说出"
+      },
+      {
+        "collocation": "come out of...",
+        "meaning": "从（不良局面中）走出"
+      },
+      {
+        "collocation": "get then o d",
+        "meaning": "得到许可"
+      },
+      {
+        "collocation": "take hold",
+        "meaning": "开始起作用"
+      },
+      {
+        "collocation": "stem from...",
+        "meaning": "来自...."
+      },
+      {
+        "collocation": "engage with..",
+        "meaning": "与..建立密切关系"
+      },
+      {
+        "collocation": "consist in..",
+        "meaning": "存在于...."
+      },
+      {
+        "collocation": "d r e am sth. up/d r e am up sth.",
+        "meaning": "想出（不"
+      },
+      {
+        "collocation": "keep one'send up（",
+        "meaning": "在困境中）坚持"
+      },
+      {
+        "collocation": "s c a l e sth. back/s c a l e back sth.",
+        "meaning": "减少"
+      },
+      {
+        "collocation": "s take sth. out/s take out sth.",
+        "meaning": "清楚地界"
+      },
+      {
+        "collocation": "be at sb. to the p u n c h",
+        "meaning": "抢先下手"
+      },
+      {
+        "collocation": "d e r i v e from...",
+        "meaning": "来自...."
+      },
+      {
+        "collocation": "be c on front e d with sth.",
+        "meaning": "面对某事"
+      },
+      {
+        "collocation": "build on sth.",
+        "meaning": "以某物为基础"
+      },
+      {
+        "collocation": "take a i m at...",
+        "meaning": "把批评的矛头指向.."
+      },
+      {
+        "collocation": "r u s h sth. through/r u s h through sth.",
+        "meaning": "使"
+      },
+      {
+        "collocation": "buy sth. up/buy up sth.",
+        "meaning": "把某物全部买下"
+      },
+      {
+        "collocation": "k i l l...off/k i l l off...",
+        "meaning": "除掉....."
+      },
+      {
+        "collocation": "be b or n with...",
+        "meaning": "生来就有...."
+      }
+    ],
+    "动词类/Group10": [
+      {
+        "collocation": "come in",
+        "meaning": "起作用"
+      },
+      {
+        "collocation": "track...down/track down...",
+        "meaning": "跟踪找到..."
+      },
+      {
+        "collocation": "s h e l l...out for sth./s h e l l out...for sth.",
+        "meaning": "为"
+      },
+      {
+        "collocation": "put sb. through sth.",
+        "meaning": "安排某人上（学）"
+      },
+      {
+        "collocation": "attach import an c e to sth.",
+        "meaning": "重视某事"
+      },
+      {
+        "collocation": "give b i r t h to sb.",
+        "meaning": "生(孩子)"
+      },
+      {
+        "collocation": "get ahead",
+        "meaning": "取得成功"
+      },
+      {
+        "collocation": "take care of...",
+        "meaning": "照看..."
+      },
+      {
+        "collocation": "care about sb.",
+        "meaning": "关心某人"
+      },
+      {
+        "collocation": "make m one y",
+        "meaning": "获利"
+      },
+      {
+        "collocation": "s p e c i a l i z e in sth.",
+        "meaning": "专门从事某事"
+      },
+      {
+        "collocation": "r e s to n...",
+        "meaning": "基于....."
+      },
+      {
+        "collocation": "stop doing sth.",
+        "meaning": "停止做某事"
+      },
+      {
+        "collocation": "a p p ear to be...",
+        "meaning": "似乎......"
+      },
+      {
+        "collocation": ".be hamper e d by...",
+        "meaning": "受到..的阻碍．"
+      },
+      {
+        "collocation": "p a r t with sth.",
+        "meaning": "放弃某物"
+      },
+      {
+        "collocation": "draw sth. up/draw up sth.",
+        "meaning": "拟定（名单、"
+      },
+      {
+        "collocation": "be c o up l e d with sth.",
+        "meaning": "与某物连接起来"
+      }
+    ],
+    "动词类/Group11": [
+      {
+        "collocation": "count on...",
+        "meaning": "依靠....."
+      },
+      {
+        "collocation": "get into the wrong hand s",
+        "meaning": "落入坏人手中"
+      },
+      {
+        "collocation": "go as t r a y",
+        "meaning": "被盗"
+      },
+      {
+        "collocation": "turn A into B",
+        "meaning": "使A变成B"
+      },
+      {
+        "collocation": "live of...",
+        "meaning": "靠生活"
+      },
+      {
+        "collocation": "bring...in/bring in...",
+        "meaning": "引入.."
+      },
+      {
+        "collocation": "replace A with B",
+        "meaning": "以B替换A"
+      },
+      {
+        "collocation": "keep a close eye/watch on...",
+        "meaning": "密切注"
+      },
+      {
+        "collocation": "keep up with...",
+        "meaning": "跟上....."
+      },
+      {
+        "collocation": "pay at t e n t i onto...",
+        "meaning": "注意...."
+      },
+      {
+        "collocation": "p l o u g h through...",
+        "meaning": "费力地坚持读完."
+      },
+      {
+        "collocation": "take...out/take out...",
+        "meaning": "推毁....."
+      },
+      {
+        "collocation": "open into...",
+        "meaning": "通向....."
+      },
+      {
+        "collocation": "bring sth. under control",
+        "meaning": "控制得住某物"
+      },
+      {
+        "collocation": "h u n t for sth.",
+        "meaning": "搜寻某物"
+      },
+      {
+        "collocation": "k e y...in/k e y in...（",
+        "meaning": "用键盘等）键入...."
+      },
+      {
+        "collocation": "rely on...",
+        "meaning": "依赖...."
+      },
+      {
+        "collocation": "c on t r as t with...",
+        "meaning": "与..形成对比"
+      }
+    ],
+    "动词类/Group12": [
+      {
+        "collocation": "work against sb.",
+        "meaning": "对某人不利"
+      },
+      {
+        "collocation": "keep a b r e as to f sth．",
+        "meaning": "了解某物的最新情况"
+      },
+      {
+        "collocation": "as so c i at e A with B",
+        "meaning": "把A和B联系在一起"
+      },
+      {
+        "collocation": "intend to do sth.",
+        "meaning": "想要做某事"
+      },
+      {
+        "collocation": "be face d with...",
+        "meaning": "面临....."
+      },
+      {
+        "collocation": "put sth. into practice",
+        "meaning": "把某事付诸实施"
+      },
+      {
+        "collocation": "keep p a c e with...",
+        "meaning": "与...步调一致"
+      },
+      {
+        "collocation": "stand for...",
+        "meaning": "代表......"
+      },
+      {
+        "collocation": "blame A on B",
+        "meaning": "把A归名于B"
+      },
+      {
+        "collocation": "triumph over...",
+        "meaning": "战胜...."
+      },
+      {
+        "collocation": "adapt to sth.",
+        "meaning": "适应（新情况）"
+      },
+      {
+        "collocation": "do z e off（",
+        "meaning": "尤指在日间）打瞌睡"
+      },
+      {
+        "collocation": "e v o l v e from...",
+        "meaning": "从....·演变而成"
+      },
+      {
+        "collocation": "c as t do u b to n sth.",
+        "meaning": "使人怀疑某事"
+      },
+      {
+        "collocation": "fall short of...",
+        "meaning": "未达到....."
+      },
+      {
+        "collocation": "risk doing sth.",
+        "meaning": "冒险做某事"
+      },
+      {
+        "collocation": "be outrage d by...",
+        "meaning": "被....·激怒"
+      },
+      {
+        "collocation": "take sth. up/take up sth.",
+        "meaning": "开始从事某事"
+      },
+      {
+        "collocation": "criticize...for sth.",
+        "meaning": "因某事批评....."
+      },
+      {
+        "collocation": "go against...",
+        "meaning": "违反...."
+      }
+    ],
+    "动词类/Group13": [
+      {
+        "collocation": "take advantage of...",
+        "meaning": "利用...."
+      },
+      {
+        "collocation": "make the most of...",
+        "meaning": "充分利用..."
+      },
+      {
+        "collocation": "leave sb. in the d u s t",
+        "meaning": "把某人远远抛在"
+      },
+      {
+        "collocation": "adjust A to B",
+        "meaning": "根据B调整A"
+      },
+      {
+        "collocation": "p refer A to B",
+        "meaning": "喜欢A甚于B"
+      },
+      {
+        "collocation": "in f e r A from B",
+        "meaning": "从B中推断A"
+      },
+      {
+        "collocation": "turn out to be...",
+        "meaning": "证明是...."
+      },
+      {
+        "collocation": "turn the c or n e r",
+        "meaning": "渡过难关"
+      },
+      {
+        "collocation": "encourage sb. to do sth.",
+        "meaning": "鼓励某人做"
+      },
+      {
+        "collocation": "back off",
+        "meaning": "放弃"
+      },
+      {
+        "collocation": "for k sth. over/for k over sth.",
+        "meaning": "给予（钱）"
+      },
+      {
+        "collocation": "disagree with sb.",
+        "meaning": "与某人意见不一致"
+      },
+      {
+        "collocation": "speak up",
+        "meaning": "说话（尤指发表意见）"
+      },
+      {
+        "collocation": "hold off on doing sth.",
+        "meaning": "推迟做某事"
+      },
+      {
+        "collocation": "lay...out/lay out...",
+        "meaning": "阐述......"
+      },
+      {
+        "collocation": "get along",
+        "meaning": "相处融洽"
+      },
+      {
+        "collocation": "watch out for...",
+        "meaning": "留意..."
+      },
+      {
+        "collocation": "have a b one to pick with sb.",
+        "meaning": "对某人"
+      },
+      {
+        "collocation": "m e e t up with sb.",
+        "meaning": "与某人相聚"
+      },
+      {
+        "collocation": "win sb. over/win over sb.",
+        "meaning": "赢得某人的"
+      }
+    ],
+    "动词类/Group14": [
+      {
+        "collocation": "pull sth. off/pull off sth.",
+        "meaning": "做成（困难的"
+      },
+      {
+        "collocation": "d i g into sth.",
+        "meaning": "探究某事"
+      },
+      {
+        "collocation": "keep...from doing sth.",
+        "meaning": "阻止..做某事"
+      },
+      {
+        "collocation": "m a r r y into sth.",
+        "meaning": "因结婚而成为（家庭或"
+      },
+      {
+        "collocation": "cope with sth.",
+        "meaning": "处理某事"
+      },
+      {
+        "collocation": "p our sth. out/p our out sth.",
+        "meaning": "毫无保留地"
+      },
+      {
+        "collocation": "add up to...",
+        "meaning": "结果是."
+      },
+      {
+        "collocation": "regard A as B",
+        "meaning": "把A视为B"
+      },
+      {
+        "collocation": ".f i g h t...off/f i g h t off...",
+        "meaning": "抵抗....."
+      },
+      {
+        "collocation": "hold sb. down/hold down sb.",
+        "meaning": "压制某人"
+      },
+      {
+        "collocation": "hold sth. down/hold down sth.",
+        "meaning": "保住(工"
+      },
+      {
+        "collocation": "a b i d e by sth.",
+        "meaning": "遵循（法律、协议、协定等）"
+      }
+    ],
+    "动词类/Group15": [
+      {
+        "collocation": "f l e s h sth. out/f l e s h out sth.",
+        "meaning": "充实（文章、"
+      },
+      {
+        "collocation": "lead up to sth.",
+        "meaning": "渐渐地引到（某个话题）"
+      },
+      {
+        "collocation": "r o u n d sth. out/r o u n do u t sth.",
+        "meaning": "圆满完成"
+      },
+      {
+        "collocation": "start out",
+        "meaning": "开始（生活、职业、重要阶段）"
+      },
+      {
+        "collocation": "come up with sth.",
+        "meaning": "想到（主意、答案等）"
+      },
+      {
+        "collocation": "do away with...",
+        "meaning": "消除......"
+      },
+      {
+        "collocation": "w a k e up",
+        "meaning": "醒来"
+      },
+      {
+        "collocation": "mean doing sth.",
+        "meaning": "意味着做某事"
+      },
+      {
+        "collocation": "add A to B",
+        "meaning": "把A添加至B"
+      },
+      {
+        "collocation": ".open...up/open u.......",
+        "meaning": "出现"
+      },
+      {
+        "collocation": "define A as B",
+        "meaning": "把A定义为B"
+      },
+      {
+        "collocation": "put...too n e s i d e",
+        "meaning": "把....·暂搁置一边"
+      },
+      {
+        "collocation": "catch up with sb.",
+        "meaning": "赶上某人"
+      },
+      {
+        "collocation": "catch up",
+        "meaning": "达到(某水平)"
+      },
+      {
+        "collocation": ". g a in in...",
+        "meaning": "增加...."
+      },
+      {
+        "collocation": "w a r d sth. off/w a r do f f sth.",
+        "meaning": "抵挡（疾病、"
+      },
+      {
+        "collocation": "follow s u it",
+        "meaning": "仿效"
+      },
+      {
+        "collocation": "e x p o s e sb. to sth.",
+        "meaning": "使某人面临某事；使"
+      },
+      {
+        "collocation": "look down on...",
+        "meaning": "不起.."
+      },
+      {
+        "collocation": "p in sth. down/p in down sth.",
+        "meaning": "确切说明"
+      }
+    ],
+    "动词类/Group16": [
+      {
+        "collocation": "enable sb. to do sth.",
+        "meaning": "使某人能够做某事"
+      },
+      {
+        "collocation": "take...for grant e d",
+        "meaning": "视...为理所当然"
+      },
+      {
+        "collocation": "protect sb. from...",
+        "meaning": "保护某人免受.."
+      },
+      {
+        "collocation": "identify A with B",
+        "meaning": "认为A等同于B"
+      },
+      {
+        "collocation": "c once n t r at e on...",
+        "meaning": "把注意力集中于.."
+      },
+      {
+        "collocation": "r e q u i r e sb. to do sth.",
+        "meaning": "要求某人做某事"
+      },
+      {
+        "collocation": "allow sb. to do sth.",
+        "meaning": "允许某人做某事;"
+      },
+      {
+        "collocation": "c h a l k A up to B",
+        "meaning": "把A归因于B"
+      },
+      {
+        "collocation": "set t l e down",
+        "meaning": "过安定的生活"
+      },
+      {
+        "collocation": "make end s m e e t",
+        "meaning": "使收支相抵"
+      },
+      {
+        "collocation": "p r o h i b it sb. from doing sth.",
+        "meaning": "禁止某人"
+      },
+      {
+        "collocation": "s t a y on",
+        "meaning": "留下来继续（学习、工作等）"
+      }
+    ],
+    "动词类/Group17": [
+      {
+        "collocation": "hand sth. out to sb./hand out sth. to",
+        "meaning": ""
+      },
+      {
+        "collocation": "s h are sth. with sb.",
+        "meaning": "和某人分享某物"
+      },
+      {
+        "collocation": "t ear one s e l f away from...",
+        "meaning": "依依不舍地离"
+      },
+      {
+        "collocation": "s w e e p across/through..（",
+        "meaning": "事件、思想、"
+      },
+      {
+        "collocation": "l e an toward s sth.",
+        "meaning": "倾向于某物"
+      },
+      {
+        "collocation": "give up",
+        "meaning": "放弃"
+      },
+      {
+        "collocation": "give...up/give up...",
+        "meaning": "放弃...."
+      },
+      {
+        "collocation": "l o g in",
+        "meaning": "登录"
+      },
+      {
+        "collocation": "hail from...",
+        "meaning": "来自...."
+      },
+      {
+        "collocation": "put up with...",
+        "meaning": "忍受....."
+      },
+      {
+        "collocation": "h an go n to sth.",
+        "meaning": "抓紧某物"
+      },
+      {
+        "collocation": "cover sth. up/cover up sth.",
+        "meaning": "掩饰某事"
+      },
+      {
+        "collocation": ".a p prove of...",
+        "meaning": "赞成....."
+      },
+      {
+        "collocation": "hold onto...",
+        "meaning": "抓牢..."
+      },
+      {
+        "collocation": ".p r a y f o...",
+        "meaning": "企盼.."
+      },
+      {
+        "collocation": "give sth. away/give away sth.",
+        "meaning": "赠送某物"
+      },
+      {
+        "collocation": "send sth. out/send out sth.",
+        "meaning": "分发某物"
+      },
+      {
+        "collocation": "take over",
+        "meaning": "接管"
+      },
+      {
+        "collocation": "c on v e r t A to B",
+        "meaning": "把A转变为B"
+      },
+      {
+        "collocation": ".f i g h t against...",
+        "meaning": "与....做斗争"
+      },
+      {
+        "collocation": "call for sth.（",
+        "meaning": "公开）要求某事"
+      }
+    ],
+    "动词类/Group18": [
+      {
+        "collocation": "turn sth. over/turn over sth.",
+        "meaning": "使某物翻转"
+      },
+      {
+        "collocation": "linger on",
+        "meaning": "继续存留"
+      },
+      {
+        "collocation": "fill up",
+        "meaning": "装满"
+      },
+      {
+        "collocation": "c at e r to..",
+        "meaning": "迎合."
+      },
+      {
+        "collocation": "find out sth.",
+        "meaning": "弄清某事"
+      },
+      {
+        "collocation": "pass sth. down/pass down sth.",
+        "meaning": "使某物"
+      },
+      {
+        "collocation": "b u r s t into...",
+        "meaning": "突然...·起来"
+      }
+    ],
+    "动词类/Group19": [
+      {
+        "collocation": "c r o p up（",
+        "meaning": "尤指意外地）出现"
+      },
+      {
+        "collocation": "c a p it a l i z e on sth.",
+        "meaning": "充分利用某物"
+      },
+      {
+        "collocation": "touch on sth.",
+        "meaning": "提及某事"
+      },
+      {
+        "collocation": "face up to sth.",
+        "meaning": "敢于面对（困难或不快"
+      },
+      {
+        "collocation": "be look in g to do sth.",
+        "meaning": "试图找到做某事的"
+      },
+      {
+        "collocation": "kick sb. out/kick out sb.",
+        "meaning": "逐出某人"
+      },
+      {
+        "collocation": "rise above sth.",
+        "meaning": "不为某物所动"
+      },
+      {
+        "collocation": "break through sth.",
+        "meaning": "突破某物"
+      },
+      {
+        "collocation": ".sign up for...",
+        "meaning": "报名参加......"
+      },
+      {
+        "collocation": "run counter to sth.",
+        "meaning": "与某事背道而驰"
+      },
+      {
+        "collocation": "s t a y away from...",
+        "meaning": "远离...."
+      },
+      {
+        "collocation": "look into sth.",
+        "meaning": "调查某事"
+      },
+      {
+        "collocation": "describe A as B",
+        "meaning": "把A称为B"
+      },
+      {
+        "collocation": "c o a c h sb. on sth.",
+        "meaning": "针对某事指导某人"
+      },
+      {
+        "collocation": "be h e l d up",
+        "meaning": "被举起"
+      },
+      {
+        "collocation": "sit on..",
+        "meaning": "在中任职"
+      },
+      {
+        "collocation": "t r a d e up",
+        "meaning": "以更好的东西取代"
+      },
+      {
+        "collocation": "thin out sth.",
+        "meaning": "减少某物"
+      },
+      {
+        "collocation": "s h r u g...off/s h r u g off...",
+        "meaning": "摆脱....."
+      },
+      {
+        "collocation": "make it",
+        "meaning": "获得成功"
+      }
+    ],
+    "动词类/Group20": [
+      {
+        "collocation": "s a v e sth. from...",
+        "meaning": "拯救某物免于...."
+      },
+      {
+        "collocation": "come down（",
+        "meaning": "价格、温度、比率等）下降"
+      },
+      {
+        "collocation": "be a d v e r t is e d as...",
+        "meaning": "被宣传为..."
+      },
+      {
+        "collocation": "see through...",
+        "meaning": "看透...."
+      },
+      {
+        "collocation": "u s her sth. in/u s her in sth.",
+        "meaning": "开创某物"
+      },
+      {
+        "collocation": "as c r i best h.to...",
+        "meaning": "认为.具有某物"
+      },
+      {
+        "collocation": "s t r i p sb. of sth.",
+        "meaning": "剥夺某人的某物"
+      },
+      {
+        "collocation": "close sth. off/close off sth.",
+        "meaning": "隔绝某物"
+      },
+      {
+        "collocation": "d r o p out",
+        "meaning": "退学"
+      },
+      {
+        "collocation": "cut across..",
+        "meaning": "与相抵触"
+      },
+      {
+        "collocation": "e m b a r k on sth.",
+        "meaning": "开始（新的或艰难的"
+      },
+      {
+        "collocation": "take its to l l",
+        "meaning": "造成重大损失"
+      },
+      {
+        "collocation": "seize on sth.",
+        "meaning": "突然对某物大为关注"
+      }
+    ],
+    "动词类/Group21": [
+      {
+        "collocation": "f end...off/f end off...",
+        "meaning": "抵挡....."
+      },
+      {
+        "collocation": ".l o c k...away/l o c k away...",
+        "meaning": "把....·锁起来"
+      },
+      {
+        "collocation": "s h u t down",
+        "meaning": "停工"
+      },
+      {
+        "collocation": "write...off/write off..",
+        "meaning": "认定.失败"
+      },
+      {
+        "collocation": "put sth. on/put on sth.",
+        "meaning": "戴上某物"
+      },
+      {
+        "collocation": "for c e sb. to do sth.",
+        "meaning": "强迫某人做某事"
+      },
+      {
+        "collocation": "try to do sth.",
+        "meaning": "试图做某事"
+      },
+      {
+        "collocation": "o p t in",
+        "meaning": "决定加入"
+      },
+      {
+        "collocation": "remind sb. of...",
+        "meaning": "使某人想起"
+      },
+      {
+        "collocation": "distinguish A from B",
+        "meaning": "区分A和B"
+      },
+      {
+        "collocation": "get one's hand so n sth.",
+        "meaning": "得到某物"
+      },
+      {
+        "collocation": "take effect",
+        "meaning": "生效"
+      },
+      {
+        "collocation": "press on",
+        "meaning": "坚定地继续"
+      },
+      {
+        "collocation": "threaten sb. with sth.",
+        "meaning": "用某事威胁某人"
+      },
+      {
+        "collocation": "call sth. out/call out sth.",
+        "meaning": "大声说出某事"
+      },
+      {
+        "collocation": ".get the best of...",
+        "meaning": "在.....中占上风"
+      },
+      {
+        "collocation": "s p e l l sth. out/s p e l l out sth.",
+        "meaning": "理解某物"
+      },
+      {
+        "collocation": "a p point sb. to do sth.",
+        "meaning": "委派某人做某事"
+      },
+      {
+        "collocation": "plunge into sth.",
+        "meaning": "陷入（某种困难或不"
+      },
+      {
+        "collocation": "look at sth.（",
+        "meaning": "用某种方式）看待某物"
+      },
+      {
+        "collocation": "s t e p into sth.",
+        "meaning": "开始做某事"
+      },
+      {
+        "collocation": "look up to sb.",
+        "meaning": "钦佩某人"
+      },
+      {
+        "collocation": "f u s so v e r..",
+        "meaning": "对.··过于关心"
+      },
+      {
+        "collocation": "w on d e r at sth.",
+        "meaning": "对某事感到惊"
+      }
+    ],
+    "动词类/Group22": [
+      {
+        "collocation": "function as...",
+        "meaning": "具有·的功能"
+      },
+      {
+        "collocation": "draw on sth.",
+        "meaning": "利用某物"
+      },
+      {
+        "collocation": "serve as...",
+        "meaning": "用作...."
+      },
+      {
+        "collocation": ".major in...",
+        "meaning": "主修....."
+      },
+      {
+        "collocation": "s if t through sth.",
+        "meaning": "细查某事"
+      },
+      {
+        "collocation": "g ear A to w a r d B",
+        "meaning": "使A与B相适应"
+      },
+      {
+        "collocation": "go into sth.",
+        "meaning": "从事 (某类工作)"
+      },
+      {
+        "collocation": "talk sb. into sth.",
+        "meaning": "说服某人做某事"
+      },
+      {
+        "collocation": "c r a c k down on...",
+        "meaning": "严厉打击..."
+      },
+      {
+        "collocation": "try...out/try out...",
+        "meaning": "试用....."
+      },
+      {
+        "collocation": "make time to do sth.",
+        "meaning": "腾出时间做某事"
+      },
+      {
+        "collocation": ".free...up/free up...",
+        "meaning": "腾出....."
+      },
+      {
+        "collocation": "s l o t...in/s l o t in...",
+        "meaning": "安排....."
+      },
+      {
+        "collocation": "come at sb.",
+        "meaning": "扑向某人"
+      },
+      {
+        "collocation": "s h u t sb. up in..",
+        "meaning": "把某人关在...."
+      },
+      {
+        "collocation": "m i x sth. up/m i x up sth.",
+        "meaning": "混合某物"
+      },
+      {
+        "collocation": "lose one s e l f in sth.",
+        "meaning": "沉迷于某事"
+      },
+      {
+        "collocation": "s q u e e z e sth. from sb.",
+        "meaning": "向某人勒索（或"
+      }
+    ],
+    "动词类/Group23": [
+      {
+        "collocation": "all o t sth. to...",
+        "meaning": "把某物分配给.."
+      },
+      {
+        "collocation": "arise from...",
+        "meaning": "由产生"
+      },
+      {
+        "collocation": "call...forth/call forth...",
+        "meaning": "唤起....."
+      },
+      {
+        "collocation": "f i l t e r sth. out/f i l t e r out sth.",
+        "meaning": "筛除某物"
+      },
+      {
+        "collocation": "bear...out/bear out...",
+        "meaning": "证实....."
+      },
+      {
+        "collocation": "w e i g h in",
+        "meaning": "发表有分量的意见"
+      },
+      {
+        "collocation": "e s c a p e from sth.",
+        "meaning": "摆脱某物"
+      },
+      {
+        "collocation": "a c c or d with sth.",
+        "meaning": "与某物相符"
+      },
+      {
+        "collocation": "build sth. up/build up sth.",
+        "meaning": "增强某物"
+      },
+      {
+        "collocation": "lead sb. to do sth.",
+        "meaning": "引导某人做某事"
+      },
+      {
+        "collocation": "accept sth. as..．",
+        "meaning": "相信某事是...."
+      },
+      {
+        "collocation": "too k for...",
+        "meaning": "寻找.."
+      },
+      {
+        "collocation": "a r m one s e l f with sth.",
+        "meaning": "用某物武装自己"
+      },
+      {
+        "collocation": "hear about...",
+        "meaning": "听说..."
+      },
+      {
+        "collocation": "prevent...from doing sth.",
+        "meaning": "防止.....做"
+      },
+      {
+        "collocation": "go into effect",
+        "meaning": "生效"
+      },
+      {
+        "collocation": "p o s eat h r eat to...",
+        "meaning": "对..构成威胁"
+      },
+      {
+        "collocation": "c on s i d e r doing sth.",
+        "meaning": "考虑做某事"
+      },
+      {
+        "collocation": "c on s i d e r...to do sth.",
+        "meaning": "认为...·做某事"
+      },
+      {
+        "collocation": "attempt to do sth.",
+        "meaning": "试图做某事"
+      },
+      {
+        "collocation": "place a high v a l u e on sth.",
+        "meaning": "高度重视某物"
+      },
+      {
+        "collocation": "c o l l a b or at e with sb.",
+        "meaning": "与某人合作"
+      },
+      {
+        "collocation": "a w a k e n sb. to sth.",
+        "meaning": "使某人意识到某事"
+      },
+      {
+        "collocation": "was t e...doing sth",
+        "meaning": "浪费....·做某事"
+      }
+    ],
+    "动词类/Group24": [
+      {
+        "collocation": "s t e a l from..",
+        "meaning": "从...中偷窃"
+      },
+      {
+        "collocation": "contract out of sth.",
+        "meaning": "退出（或不参加)"
+      },
+      {
+        "collocation": "would like sb. to do sth.",
+        "meaning": "希望某人做某事"
+      },
+      {
+        "collocation": "take a hit",
+        "meaning": "受到严重影响"
+      },
+      {
+        "collocation": "l e v e l out",
+        "meaning": "保持平稳发展"
+      },
+      {
+        "collocation": "put another way",
+        "meaning": "换句话说"
+      },
+      {
+        "collocation": "use sth. up/use up sth.",
+        "meaning": "吃光某物；用尽"
+      },
+      {
+        "collocation": ".turn...back/turn back...",
+        "meaning": "使.....原路返回"
+      },
+      {
+        "collocation": "refuse to do sth.",
+        "meaning": "拒绝做某事"
+      },
+      {
+        "collocation": "r e g r e t doing sth.",
+        "meaning": "后悔做了某事（事情"
+      },
+      {
+        "collocation": "wait to do sth.",
+        "meaning": "等着做某事"
+      },
+      {
+        "collocation": "t r eat one s e l f to sth.",
+        "meaning": "以某物招待自己"
+      },
+      {
+        "collocation": "pretend to do sth.",
+        "meaning": "假装做某事"
+      },
+      {
+        "collocation": "w or r y about...",
+        "meaning": "担心....."
+      },
+      {
+        "collocation": "keep...in check",
+        "meaning": "控制."
+      }
+    ],
+    "名词类/Group1": [
+      {
+        "collocation": "am as so f...",
+        "meaning": "大量..."
+      },
+      {
+        "collocation": "a c as c a d e of...",
+        "meaning": "大量.."
+      },
+      {
+        "collocation": "a b o d y of...",
+        "meaning": "大量....."
+      },
+      {
+        "collocation": "a b u n c h of...",
+        "meaning": "大量..."
+      },
+      {
+        "collocation": "an a r r a y of...",
+        "meaning": "一大批"
+      },
+      {
+        "collocation": "a c o l l e c t i on of... -",
+        "meaning": "批....."
+      },
+      {
+        "collocation": "aware n e s so f sth.",
+        "meaning": "对某事的意识"
+      },
+      {
+        "collocation": "as t at e of a f f a i r s",
+        "meaning": "情况"
+      },
+      {
+        "collocation": "a line between A and B A",
+        "meaning": "与B的界限"
+      },
+      {
+        "collocation": "the b u l k of...",
+        "meaning": "大部分....."
+      },
+      {
+        "collocation": "am a j or it y of...（",
+        "meaning": "泛指）大多数...."
+      },
+      {
+        "collocation": "the advantage so f sth.",
+        "meaning": "某物的优点"
+      },
+      {
+        "collocation": "the basis of sth.",
+        "meaning": "某物的基础"
+      },
+      {
+        "collocation": "a l i c e n c e to p r in t m one y",
+        "meaning": "一本万利"
+      },
+      {
+        "collocation": "the d e m and for........",
+        "meaning": "的要求"
+      },
+      {
+        "collocation": "d e m and so f sth.",
+        "meaning": "某事（尤指困难、使人"
+      },
+      {
+        "collocation": "in v e s t m e n t in sth.",
+        "meaning": "对某物的投资"
+      },
+      {
+        "collocation": "a h o s t of...",
+        "meaning": "许多....."
+      },
+      {
+        "collocation": "a p i e c e of c a k e",
+        "meaning": "轻而易举的事"
+      },
+      {
+        "collocation": "the k e y to sth.",
+        "meaning": "某事的关键"
+      },
+      {
+        "collocation": "a l a c k of sth.",
+        "meaning": "缺乏某物"
+      }
+    ],
+    "名词类/Group2": [
+      {
+        "collocation": "then u m be r/am o u n to f........",
+        "meaning": "的数量"
+      },
+      {
+        "collocation": "a n u m be r of... -",
+        "meaning": "些......"
+      },
+      {
+        "collocation": "an am o u n to f...-",
+        "meaning": "些...."
+      },
+      {
+        "collocation": "p a r t and p a r c e l of sth.",
+        "meaning": "某物的重要部分"
+      },
+      {
+        "collocation": "the other way around",
+        "meaning": "正相反"
+      },
+      {
+        "collocation": "a v a r i e t y of...",
+        "meaning": "各种各样的.."
+      },
+      {
+        "collocation": "all kind so f..",
+        "meaning": "各种各样的.."
+      },
+      {
+        "collocation": "as t r in go f...",
+        "meaning": "系列...."
+      },
+      {
+        "collocation": "a r an g e of...",
+        "meaning": "一系列.."
+      },
+      {
+        "collocation": "a s e r i e s of...",
+        "meaning": "一系列...."
+      },
+      {
+        "collocation": "as u c c e s s i on of...",
+        "meaning": "一系列....."
+      },
+      {
+        "collocation": "a p i l e of...",
+        "meaning": "一堆......"
+      },
+      {
+        "collocation": ".s w at h so f...",
+        "meaning": "大片....."
+      },
+      {
+        "collocation": "a shortage of.......",
+        "meaning": "的短缺"
+      }
+    ],
+    "名词类/Group3": [
+      {
+        "collocation": "the f i g h t against sth.",
+        "meaning": "与某物的斗争"
+      },
+      {
+        "collocation": "at r a in of t h o u g h t.",
+        "meaning": "思路"
+      },
+      {
+        "collocation": "an in c r e as in g n u m be r of...",
+        "meaning": ""
+      },
+      {
+        "collocation": "an emphasis on sth.",
+        "meaning": "对某事的强调"
+      },
+      {
+        "collocation": "the d e s i r e to do sth.",
+        "meaning": "对做某事的渴望"
+      },
+      {
+        "collocation": "an average of...",
+        "meaning": "平均为....."
+      },
+      {
+        "collocation": "access to sth.（",
+        "meaning": "使用或见到）某物的"
+      },
+      {
+        "collocation": "a decline in....",
+        "meaning": "的减少"
+      },
+      {
+        "collocation": "control over...",
+        "meaning": "对..·的控制"
+      },
+      {
+        "collocation": "no do u b t",
+        "meaning": "无疑"
+      },
+      {
+        "collocation": "a c o up l e of...",
+        "meaning": "几个...."
+      },
+      {
+        "collocation": "a chance to do sth.",
+        "meaning": "一个做某事的机会"
+      },
+      {
+        "collocation": "a b an on..",
+        "meaning": "对...·的禁令"
+      },
+      {
+        "collocation": "the so l u t i onto sth.",
+        "meaning": "某事的解决办法"
+      },
+      {
+        "collocation": "the r e l at i on s h i p between A and B A",
+        "meaning": ""
+      },
+      {
+        "collocation": "a c on t r i but i onto...",
+        "meaning": "对...·的贡献"
+      },
+      {
+        "collocation": "do z e n so f...",
+        "meaning": "许多...."
+      },
+      {
+        "collocation": "r e search into..",
+        "meaning": "对...的研究"
+      },
+      {
+        "collocation": "a combination of sth.",
+        "meaning": "某物的结合体"
+      },
+      {
+        "collocation": "the p o s s i b i l it y of sth.",
+        "meaning": "某事的可能性"
+      },
+      {
+        "collocation": "resistance to...",
+        "meaning": "对....的反对"
+      }
+    ],
+    "介词类/Group1": [
+      {
+        "collocation": "in terms of...",
+        "meaning": "在...方面"
+      },
+      {
+        "collocation": "in total",
+        "meaning": "总计"
+      },
+      {
+        "collocation": "in response to...",
+        "meaning": "响应..."
+      },
+      {
+        "collocation": "on the whole",
+        "meaning": "总的看来"
+      },
+      {
+        "collocation": "in c on j u n c t i on with...",
+        "meaning": "与.....-起"
+      },
+      {
+        "collocation": "on/to the contrary",
+        "meaning": "与此相反"
+      },
+      {
+        "collocation": "around the c or n e r",
+        "meaning": "即将发生"
+      },
+      {
+        "collocation": "in question",
+        "meaning": "讨论（或议论）中的"
+      },
+      {
+        "collocation": "in the face of sth.",
+        "meaning": "面对某事"
+      },
+      {
+        "collocation": "in the or y",
+        "meaning": "理论上"
+      },
+      {
+        "collocation": "in general",
+        "meaning": "通常"
+      },
+      {
+        "collocation": "in/by c on t r as t",
+        "meaning": "相比之下；相反"
+      },
+      {
+        "collocation": "for instance",
+        "meaning": "例如；比如"
+      },
+      {
+        "collocation": "in then am e of...",
+        "meaning": "以...的名义"
+      },
+      {
+        "collocation": "in the for m of...",
+        "meaning": "用....的形式"
+      },
+      {
+        "collocation": "in the way of...",
+        "meaning": "关于......"
+      },
+      {
+        "collocation": "by way of s p.",
+        "meaning": "经过某地"
+      },
+      {
+        "collocation": "on behalf of sb.",
+        "meaning": "代表某人"
+      },
+      {
+        "collocation": ".with regard to...",
+        "meaning": "关于....."
+      },
+      {
+        "collocation": "apart from...",
+        "meaning": "除了....外（还)"
+      },
+      {
+        "collocation": "on average",
+        "meaning": "平均来看"
+      },
+      {
+        "collocation": "in principle",
+        "meaning": "大体上"
+      }
+    ],
+    "介词类/Group2": [
+      {
+        "collocation": "instead of..",
+        "meaning": "代替..而不是..."
+      },
+      {
+        "collocation": "as for...",
+        "meaning": "至于....."
+      },
+      {
+        "collocation": "by chance",
+        "meaning": "偶然"
+      },
+      {
+        "collocation": "at large",
+        "meaning": "一般地"
+      },
+      {
+        "collocation": "at length",
+        "meaning": "详尽地"
+      },
+      {
+        "collocation": "in e s s e n c e",
+        "meaning": "本质上"
+      },
+      {
+        "collocation": "at s take",
+        "meaning": "有风险"
+      },
+      {
+        "collocation": "due to...",
+        "meaning": "由于...."
+      },
+      {
+        "collocation": "ahead of...",
+        "meaning": "早于..."
+      },
+      {
+        "collocation": "to...e x t e n t",
+        "meaning": "在.....程度上"
+      },
+      {
+        "collocation": "of no account",
+        "meaning": "无足轻重"
+      },
+      {
+        "collocation": "in short order",
+        "meaning": "在短时间内"
+      },
+      {
+        "collocation": "at b o t to m",
+        "meaning": "归根结底"
+      },
+      {
+        "collocation": "by coincidence",
+        "meaning": "碰巧"
+      },
+      {
+        "collocation": "in a row",
+        "meaning": "连续几次地"
+      },
+      {
+        "collocation": ".in place of...",
+        "meaning": "代替.."
+      },
+      {
+        "collocation": "in the mean time",
+        "meaning": "同时"
+      },
+      {
+        "collocation": "at is s u e",
+        "meaning": "问题的焦点"
+      }
+    ],
+    "介词类/Group3": [
+      {
+        "collocation": "within r e as on",
+        "meaning": "合情合理地"
+      },
+      {
+        "collocation": "in so far as...",
+        "meaning": "到...程度"
+      },
+      {
+        "collocation": "at hand",
+        "meaning": "即将发生"
+      },
+      {
+        "collocation": "at risk of..．",
+        "meaning": "有.·的风险."
+      },
+      {
+        "collocation": "at all time s",
+        "meaning": "随时；永远"
+      },
+      {
+        "collocation": "in advance",
+        "meaning": "提前"
+      },
+      {
+        "collocation": "in r e turn for sth.",
+        "meaning": "作为对某物的回报"
+      },
+      {
+        "collocation": "in place",
+        "meaning": "准备就绪"
+      },
+      {
+        "collocation": "in charge",
+        "meaning": "负责"
+      },
+      {
+        "collocation": "in the first place",
+        "meaning": "一开始；起初"
+      },
+      {
+        "collocation": ".in r e l at i onto...",
+        "meaning": "有关.....关于....."
+      },
+      {
+        "collocation": "with ease",
+        "meaning": "不费劲"
+      },
+      {
+        "collocation": "at odd s with..",
+        "meaning": "与....有差异"
+      },
+      {
+        "collocation": "with the exception of...",
+        "meaning": "除...之外"
+      },
+      {
+        "collocation": "by no mean s",
+        "meaning": "绝不"
+      },
+      {
+        "collocation": "in a c t i on",
+        "meaning": "在运转"
+      },
+      {
+        "collocation": "for sure",
+        "meaning": "肯定"
+      },
+      {
+        "collocation": "in the light of sth.",
+        "meaning": "根据某事；考虑到"
+      },
+      {
+        "collocation": "forth e most p a r t",
+        "meaning": "就绝大部分而言；在"
+      },
+      {
+        "collocation": "on record",
+        "meaning": "公开发表的"
+      },
+      {
+        "collocation": "according to...",
+        "meaning": "按所说；根据.."
+      },
+      {
+        "collocation": "in the a b s e n c e of...",
+        "meaning": "在没有....的情"
+      }
+    ],
+    "介词类/Group4": [
+      {
+        "collocation": "on one l e v e l",
+        "meaning": "在某种程度上"
+      },
+      {
+        "collocation": "by the time...",
+        "meaning": "到....·的时候"
+      },
+      {
+        "collocation": "around the c l o c k",
+        "meaning": "夜以继日"
+      },
+      {
+        "collocation": "in combination with...",
+        "meaning": "与.....结合"
+      },
+      {
+        "collocation": "at best",
+        "meaning": "充其量"
+      },
+      {
+        "collocation": ".for f ear of...",
+        "meaning": "唯恐....."
+      },
+      {
+        "collocation": "at the start",
+        "meaning": "一开始"
+      },
+      {
+        "collocation": "at the very least",
+        "meaning": "最起码"
+      },
+      {
+        "collocation": "in keep in g with...",
+        "meaning": "与....致"
+      },
+      {
+        "collocation": "by d e sign",
+        "meaning": "故意地"
+      },
+      {
+        "collocation": "without question",
+        "meaning": "毫无疑问"
+      },
+      {
+        "collocation": "in case of...",
+        "meaning": "如果..."
+      },
+      {
+        "collocation": "in the case of...",
+        "meaning": "至于...."
+      },
+      {
+        "collocation": "for purpose s of...",
+        "meaning": "为了......"
+      },
+      {
+        "collocation": "from the b o t to m up",
+        "meaning": "彻底地"
+      },
+      {
+        "collocation": "in need",
+        "meaning": "困难中的"
+      },
+      {
+        "collocation": "in search of sth.",
+        "meaning": "寻找某物"
+      },
+      {
+        "collocation": "in a...m an n e r",
+        "meaning": "以....方式"
+      },
+      {
+        "collocation": "in d an g e r",
+        "meaning": "处于危险中"
+      }
+    ],
+    "介词类/Group5": [
+      {
+        "collocation": "as are s u l to f...",
+        "meaning": "作为..·的结果"
+      },
+      {
+        "collocation": "as are s u l t",
+        "meaning": "因此"
+      },
+      {
+        "collocation": "in charge of...",
+        "meaning": "负责...."
+      },
+      {
+        "collocation": "in vain",
+        "meaning": "徒劳无益"
+      },
+      {
+        "collocation": "from the out set",
+        "meaning": "从开始"
+      },
+      {
+        "collocation": "in short",
+        "meaning": "总之"
+      },
+      {
+        "collocation": "for good",
+        "meaning": "永远"
+      },
+      {
+        "collocation": "in the d a r k about sth.",
+        "meaning": "对某事全然不知"
+      },
+      {
+        "collocation": "in dispute",
+        "meaning": "有争议"
+      },
+      {
+        "collocation": "in favor of...",
+        "meaning": "支持...."
+      },
+      {
+        "collocation": "for one thin g",
+        "meaning": "首先"
+      },
+      {
+        "collocation": "in addition",
+        "meaning": "此外"
+      },
+      {
+        "collocation": "in addition to...",
+        "meaning": "除....以外"
+      },
+      {
+        "collocation": "on the h or i z on",
+        "meaning": "很可能即将发生；已露"
+      },
+      {
+        "collocation": "forth e benefit of...",
+        "meaning": "为了....的利益"
+      },
+      {
+        "collocation": "at the for e front of sth.",
+        "meaning": "处于某事最前列"
+      },
+      {
+        "collocation": "in private",
+        "meaning": "私下地"
+      },
+      {
+        "collocation": "in front of...",
+        "meaning": "在..前面"
+      },
+      {
+        "collocation": "in consequence",
+        "meaning": "因此"
+      },
+      {
+        "collocation": "on account of...",
+        "meaning": "因为......"
+      },
+      {
+        "collocation": "without do u b t",
+        "meaning": "毫无疑问"
+      },
+      {
+        "collocation": "in conclusion",
+        "meaning": "最后"
+      },
+      {
+        "collocation": "o win g to...",
+        "meaning": "由于....."
+      }
+    ],
+    "介词类/Group6": [
+      {
+        "collocation": "out of style",
+        "meaning": "不时兴的"
+      },
+      {
+        "collocation": "aside from...",
+        "meaning": "除了...外"
+      },
+      {
+        "collocation": "in p u r s u it of sth.",
+        "meaning": "追求某物"
+      },
+      {
+        "collocation": "in particular",
+        "meaning": "特别；尤其"
+      },
+      {
+        "collocation": "at any r at e",
+        "meaning": "无论如何"
+      },
+      {
+        "collocation": "at work",
+        "meaning": "起作用"
+      },
+      {
+        "collocation": "from the ground up",
+        "meaning": "完全"
+      },
+      {
+        "collocation": "in an instant",
+        "meaning": "立即"
+      },
+      {
+        "collocation": "to the m o m e n t",
+        "meaning": "及时"
+      },
+      {
+        "collocation": "at random",
+        "meaning": "任意地"
+      },
+      {
+        "collocation": "by all account s",
+        "meaning": "一致认为"
+      },
+      {
+        "collocation": "in the m i d s to f...",
+        "meaning": "当..·发生时"
+      },
+      {
+        "collocation": "at the s am e time",
+        "meaning": "同时"
+      },
+      {
+        "collocation": "above all",
+        "meaning": "最重要的"
+      },
+      {
+        "collocation": "at most",
+        "meaning": "至多"
+      },
+      {
+        "collocation": "at first",
+        "meaning": "起初"
+      },
+      {
+        "collocation": "in c on t r as t",
+        "meaning": "相比之下"
+      },
+      {
+        "collocation": "in despair",
+        "meaning": "在绝望中"
+      },
+      {
+        "collocation": "by mean so f sth.",
+        "meaning": "依靠某种方法"
+      },
+      {
+        "collocation": "at the end of the d a y",
+        "meaning": "最终"
+      },
+      {
+        "collocation": "at the c o s to f sth.",
+        "meaning": "以某物为代价"
+      },
+      {
+        "collocation": "at all c o s t s",
+        "meaning": "不惜任何代价"
+      }
+    ],
+    "形容词类/Group1": [
+      {
+        "collocation": "be at t r i but a b l e to..",
+        "meaning": "可归因于.."
+      },
+      {
+        "collocation": "be poor at doing sth.",
+        "meaning": "不擅长做某事"
+      },
+      {
+        "collocation": "be r o o t e d in sth.",
+        "meaning": "根源在于某物"
+      },
+      {
+        "collocation": "be about to do sth.",
+        "meaning": "即将做某事"
+      },
+      {
+        "collocation": "be u n prepare d for sth.",
+        "meaning": "对某事没有准备"
+      },
+      {
+        "collocation": "be add i c t e d to sth.",
+        "meaning": "对某物上瘾"
+      },
+      {
+        "collocation": "be likely to do sth.",
+        "meaning": "可能做某事"
+      },
+      {
+        "collocation": "be superior to...",
+        "meaning": "优于......"
+      },
+      {
+        "collocation": "be relate d to sth.",
+        "meaning": "与某物相关"
+      },
+      {
+        "collocation": "be close to...",
+        "meaning": "接近...."
+      },
+      {
+        "collocation": "be devoted to...",
+        "meaning": "专用于....."
+      },
+      {
+        "collocation": "be grateful for sth.",
+        "meaning": "对某事表示感谢"
+      },
+      {
+        "collocation": "be hostile to..",
+        "meaning": "对...有敌意"
+      },
+      {
+        "collocation": "be pessimistic about sth.",
+        "meaning": "对某事感到"
+      },
+      {
+        "collocation": "be done with sth.",
+        "meaning": "做完某事"
+      },
+      {
+        "collocation": "be c a u t i o u s about...",
+        "meaning": "对....谨慎"
+      },
+      {
+        "collocation": "be b o u n d to do sth.",
+        "meaning": "一定会做某事"
+      },
+      {
+        "collocation": "be b o u n d for...",
+        "meaning": "准备前往..."
+      },
+      {
+        "collocation": "be upset with sb.",
+        "meaning": "对某人感到不快"
+      },
+      {
+        "collocation": "be obsess e d with...",
+        "meaning": "对....着迷"
+      },
+      {
+        "collocation": "be weak in sth.",
+        "meaning": "不擅长某事"
+      },
+      {
+        "collocation": "be eligible for sth.",
+        "meaning": "有资格获得某物"
+      }
+    ],
+    "形容词类/Group2": [
+      {
+        "collocation": "be subject to sth.",
+        "meaning": "可能受某物影响"
+      },
+      {
+        "collocation": "be as so c i at e d with...",
+        "meaning": "与....相关联"
+      },
+      {
+        "collocation": "be determined to do sth.",
+        "meaning": "决心做某事"
+      },
+      {
+        "collocation": "be s u it e d for doing sth.",
+        "meaning": "适合做某事"
+      },
+      {
+        "collocation": "be be n e f i c i a l to...",
+        "meaning": "对.....有利"
+      },
+      {
+        "collocation": "be c on t r a d i c to r y to sth.",
+        "meaning": "与某物相矛盾"
+      },
+      {
+        "collocation": "be e x e m p t from sth.",
+        "meaning": "免除某物（责任、"
+      },
+      {
+        "collocation": "be c o m p a r a b l e to doing sth.",
+        "meaning": "类似于做"
+      },
+      {
+        "collocation": "be in f e r i or to...",
+        "meaning": "比不上...."
+      }
+    ],
+    "形容词类/Group3": [
+      {
+        "collocation": "be s u s c e p t i b l e to...",
+        "meaning": "易受...··影响"
+      },
+      {
+        "collocation": "be busy doing sth.",
+        "meaning": "忙于做某事"
+      },
+      {
+        "collocation": "be q u a l if i e d to do sth.",
+        "meaning": "能胜任做某事"
+      },
+      {
+        "collocation": "be c on s c i o u so f sth.",
+        "meaning": "意识到某物"
+      },
+      {
+        "collocation": "be/get s t u c k in sth.",
+        "meaning": "困于某事"
+      },
+      {
+        "collocation": "be hungry for sth.",
+        "meaning": "渴望得到某物"
+      },
+      {
+        "collocation": "be unfamiliar with sth.",
+        "meaning": "对某物不熟悉"
+      },
+      {
+        "collocation": "be keen to do sth.",
+        "meaning": "渴望做某事"
+      },
+      {
+        "collocation": "be due to do sth.",
+        "meaning": "预计做某事"
+      },
+      {
+        "collocation": "be fresh from sth.",
+        "meaning": "刚完成（学业、培"
+      },
+      {
+        "collocation": "be am a z e d at...",
+        "meaning": "对·感到惊呀"
+      },
+      {
+        "collocation": "be c o in c i d e n t with sth.",
+        "meaning": "与某事同时"
+      },
+      {
+        "collocation": "be dedicated to(doing)sth.",
+        "meaning": "致力于"
+      },
+      {
+        "collocation": "be independent of...",
+        "meaning": "不受.影响"
+      },
+      {
+        "collocation": "be separate from...",
+        "meaning": "与..分开"
+      },
+      {
+        "collocation": "be u n likely to do sth.",
+        "meaning": "不太可能做某事"
+      },
+      {
+        "collocation": "be in j u r i o u s to...",
+        "meaning": "对....有害"
+      },
+      {
+        "collocation": "be obliged to sb.",
+        "meaning": "感谢某人"
+      },
+      {
+        "collocation": "be base do n sth.",
+        "meaning": "以某物为基础"
+      },
+      {
+        "collocation": "be unfamiliar to sb.",
+        "meaning": "对某人而言不熟悉"
+      },
+      {
+        "collocation": "be concern e d with/about...",
+        "meaning": "关注....."
+      },
+      {
+        "collocation": "be e x c it e d about sth.",
+        "meaning": "对某事感到兴奋"
+      }
+    ],
+    "形容词类/Group4": [
+      {
+        "collocation": "be dependent on...",
+        "meaning": "依赖..."
+      },
+      {
+        "collocation": "be prepare d for sth.",
+        "meaning": "对某事有所准备"
+      },
+      {
+        "collocation": "be c on v in c e do f sth.",
+        "meaning": "确信某事"
+      },
+      {
+        "collocation": "be full of sth.",
+        "meaning": "满是某物"
+      },
+      {
+        "collocation": "be p a c k e d with sth.",
+        "meaning": "有大量某物"
+      },
+      {
+        "collocation": "get involved in sth.",
+        "meaning": "参与某事"
+      },
+      {
+        "collocation": "be willing to do sth.",
+        "meaning": "愿意做某事"
+      }
+    ]
+  },
+  "total_count": 827
+}
