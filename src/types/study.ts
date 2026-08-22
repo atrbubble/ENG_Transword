@@ -153,6 +153,7 @@ export interface WordSelection {
   raw: string
   normalized: string
   entry: DictionaryEntry
+  matchedWord?: string
   paperId: string
   paperTitle: string
   sourceSectionId?: string

@@ -95,6 +95,66 @@ export function buildLookupCandidates(word: string) {
   return [...candidates]
 }
 
+function longestCommonSubstringLength(left: string, right: string) {
+  const rows = left.length
+  const cols = right.length
+  let previous = new Array<number>(cols + 1).fill(0)
+  let longest = 0
+
+  for (let row = 1; row <= rows; row += 1) {
+    const current = new Array<number>(cols + 1).fill(0)
+
+    for (let col = 1; col <= cols; col += 1) {
+      if (left[row - 1] === right[col - 1]) {
+        current[col] = previous[col - 1] + 1
+        longest = Math.max(longest, current[col])
+      }
+    }
+
+    previous = current
+  }
+
+  return longest
+}
+
+export function findClosestDictionaryWord(target: string, dictionary: Record<string, unknown>) {
+  const normalized = normalizeWord(target)
+
+  if (!normalized || normalized.length < 3) {
+    return null
+  }
+
+  let bestWord: string | null = null
+  let bestOverlap = 0
+
+  for (const candidate of Object.keys(dictionary)) {
+    const overlap = longestCommonSubstringLength(normalized, candidate)
+
+    if (!overlap) {
+      continue
+    }
+
+    // 重合片段最长者优先;长度相同时取更短的词(词根通常比派生词更短)
+    const better =
+      overlap > bestOverlap ||
+      (overlap === bestOverlap && (bestWord === null || candidate.length < bestWord.length))
+
+    if (better) {
+      bestOverlap = overlap
+      bestWord = candidate
+    }
+  }
+
+  if (bestWord === null) {
+    return null
+  }
+
+  // 阈值:重合片段必须足够长,避免匹配到只有两三个字母巧合相同的词
+  const minimumOverlap = Math.max(3, Math.floor(Math.min(normalized.length, bestWord.length) * 0.6))
+
+  return bestOverlap >= minimumOverlap ? bestWord : null
+}
+
 export function tokenizeParagraph(paragraph: string): Token[] {
   const matches = sanitizeDisplayText(paragraph).match(wordPattern) ?? []
 

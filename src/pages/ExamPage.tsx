@@ -13,7 +13,7 @@ import { AppShell } from '@/components/AppShell'
 import { PassageReader } from '@/components/PassageReader'
 import { QuestionPanel } from '@/components/QuestionPanel'
 import { TranslationResponsePanel, WritingResponsePanel } from '@/components/TextResponsePanel'
-import { WordPopover } from '@/components/WordPopover'
+import { WordPopover, type PopoverAnchor } from '@/components/WordPopover'
 import { dictionary } from '@/data/dictionary'
 import { examPaperMap } from '@/data/examPapers'
 import { cn } from '@/lib/utils'
@@ -32,6 +32,7 @@ import {
   buildLookupCandidates,
   extractSentenceForPhrase,
   extractSentenceForWord,
+  findClosestDictionaryWord,
   normalizeWord,
   sanitizeDisplayText,
 } from '@/utils/text'
@@ -57,7 +58,9 @@ function buildSelection(
   }
 
   const matchedWord = buildLookupCandidates(rawWord).find((candidate) => dictionary[candidate])
-  const entry = (matchedWord ? dictionary[matchedWord] : undefined) ?? {
+  const closestWord = matchedWord ? null : findClosestDictionaryWord(normalized, dictionary)
+  const resolvedWord = matchedWord ?? closestWord
+  const entry = (resolvedWord ? dictionary[resolvedWord] : undefined) ?? {
     word: normalized,
     meaning: MISSING_MEANING_PLACEHOLDER,
     source: 'fallback',
@@ -67,6 +70,7 @@ function buildSelection(
     raw: rawWord,
     normalized,
     entry,
+    matchedWord: resolvedWord && resolvedWord !== normalized ? resolvedWord : undefined,
     paperId,
     paperTitle,
     sourceSectionId: metadata.sourceSectionId,
@@ -161,12 +165,13 @@ export default function ExamPage() {
   const answerRecords = useStudyStore((state) => state.answerRecords)
   const textResponseRecords = useStudyStore((state) => state.textResponseRecords)
   const saveWord = useStudyStore((state) => state.saveWord)
+  const deleteWord = useStudyStore((state) => state.deleteWord)
   const setAnswer = useStudyStore((state) => state.setAnswer)
   const setTextResponse = useStudyStore((state) => state.setTextResponse)
   const isSavedWord = useStudyStore((state) => state.isSaved)
 
   const [selection, setSelection] = useState<WordSelection | null>(null)
-  const [popoverPosition, setPopoverPosition] = useState<{ x: number; y: number } | null>(null)
+  const [popoverPosition, setPopoverPosition] = useState<PopoverAnchor | null>(null)
   const [draggingPhrase, setDraggingPhrase] = useState<DraftPhraseSelection | null>(null)
   const [phraseSelection, setPhraseSelection] = useState<DraftPhraseSelection | null>(null)
   const [suppressNextWordClick, setSuppressNextWordClick] = useState(false)
@@ -494,8 +499,9 @@ export default function ExamPage() {
 
     setSelection(nextSelection)
     setPopoverPosition({
-      x: event.currentTarget.getBoundingClientRect().left,
-      y: event.currentTarget.getBoundingClientRect().bottom + 12,
+      left: event.currentTarget.getBoundingClientRect().left,
+      top: event.currentTarget.getBoundingClientRect().top,
+      bottom: event.currentTarget.getBoundingClientRect().bottom,
     })
   }
 
@@ -523,12 +529,18 @@ export default function ExamPage() {
       return
     }
 
-    saveWord(nextSelection)
+    if (isSavedWord(nextSelection.normalized)) {
+      deleteWord(nextSelection.normalized)
+    } else {
+      saveWord(nextSelection)
+    }
+
     setPhraseSelection(null)
     setSelection(nextSelection)
     setPopoverPosition({
-      x: event.currentTarget.getBoundingClientRect().left,
-      y: event.currentTarget.getBoundingClientRect().bottom + 12,
+      left: event.currentTarget.getBoundingClientRect().left,
+      top: event.currentTarget.getBoundingClientRect().top,
+      bottom: event.currentTarget.getBoundingClientRect().bottom,
     })
   }
 
@@ -817,7 +829,7 @@ export default function ExamPage() {
             </div>
             <div className="mt-4 space-y-3 text-sm leading-7 text-[#eadfbe]">
               <p>1. 左侧正文里点击单词，立即显示中文意思。</p>
-              <p>2. 在目标单词上右键，可快速加入生词本。</p>
+              <p>2. 右键单词：第一次加入生词本，再次右键移除。</p>
               <p>3. 右侧每道题题号前都能直接选 A/B/C/D。</p>
             </div>
           </div>

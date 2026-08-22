@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import type { AnswerRecord, SavedWord } from '@/types/study'
 import { removeSavedWord, upsertAnswerRecord, upsertSavedWord } from '@/utils/study'
-import { buildLookupCandidates, normalizeWord, shouldAppendSpace, tokenizeParagraph } from '@/utils/text'
+import { buildLookupCandidates, findClosestDictionaryWord, normalizeWord, shouldAppendSpace, tokenizeParagraph } from '@/utils/text'
 
 describe('text utils', () => {
   it('normalizes punctuation around words', () => {
@@ -26,6 +26,24 @@ describe('text utils', () => {
     expect(buildLookupCandidates('studies')).toContain('study')
     expect(buildLookupCandidates('running')).toContain('run')
     expect(buildLookupCandidates('bankers')).toContain('banker')
+  })
+
+  it('finds the closest dictionary word by longest overlap', () => {
+    const dict: Record<string, unknown> = {
+      normal: {},
+      understand: {},
+      abnormal: {},
+      nation: {},
+      able: {},
+    }
+
+    expect(findClosestDictionaryWord('normalization', dict)).toBe('normal')
+    expect(findClosestDictionaryWord('understandability', dict)).toBe('understand')
+    expect(findClosestDictionaryWord('abnormalities', dict)).toBe('abnormal')
+  })
+
+  it('returns null when no meaningful overlap exists', () => {
+    expect(findClosestDictionaryWord('xyz', { normal: {}, able: {} })).toBeNull()
   })
 })
 
