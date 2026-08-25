@@ -48,6 +48,7 @@ export const useStudyStore = create<StudyState>()(
         set((state) => ({
           savedWords: upsertSavedWord(state.savedWords, {
             word: selection.normalized,
+            matchedWord: selection.matchedWord,
             meaning: selection.entry.meaning,
             phonetic: selection.entry.phonetic,
             partOfSpeech: selection.entry.partOfSpeech,

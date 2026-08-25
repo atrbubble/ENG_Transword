@@ -15,6 +15,7 @@ export function upsertSavedWord(words: SavedWord[], nextWord: SavedWord) {
           : nextWord.meaning,
       phonetic: existingWord.phonetic ?? nextWord.phonetic,
       partOfSpeech: existingWord.partOfSpeech ?? nextWord.partOfSpeech,
+      matchedWord: existingWord.matchedWord ?? nextWord.matchedWord,
     }
 
     return words

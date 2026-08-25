@@ -35,7 +35,8 @@ function downloadVocabularyMd(words: ReturnType<typeof useStudyStore.getState>['
 
   const content = words
     .map((word, index) => {
-      const lines: string[] = [`## ${word.word}`, '']
+      const heading = word.matchedWord ? `${word.word} (${word.matchedWord})` : word.word
+      const lines: string[] = [`## ${heading}`, '']
 
       const details: string[] = []
 
@@ -237,12 +238,8 @@ export default function VocabularyPage() {
   const manualPhraseKey = normalizePhraseKey(phraseDraft)
 
   const startEditingWordMeaning = (word: string, meaning: string) => {
-    if (meaning !== MISSING_MEANING_PLACEHOLDER) {
-      return
-    }
-
     setEditingWord(word)
-    setDraftMeaning('')
+    setDraftMeaning(meaning === MISSING_MEANING_PLACEHOLDER ? '' : meaning)
   }
 
   const finishEditingWordMeaning = () => {
@@ -597,6 +594,11 @@ export default function VocabularyPage() {
                           <div className="flex flex-wrap items-center gap-3">
                             <p className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-3xl text-[#21352b]">
                               {word.word}
+                              {word.matchedWord ? (
+                                <span className="ml-2 text-xl text-[#a4955f]">
+                                  ({word.matchedWord})
+                                </span>
+                              ) : null}
                             </p>
                             {word.partOfSpeech ? (
                               <span className="rounded-full bg-[#21352b]/8 px-3 py-1 text-xs text-[#21352b]">
@@ -624,7 +626,7 @@ export default function VocabularyPage() {
                                 autoFocus
                                 rows={3}
                                 className="w-full rounded-2xl border border-[#21352b]/20 bg-white px-4 py-3 text-sm leading-7 text-stone-700 outline-none transition focus:border-[#21352b]/45"
-                                placeholder="双击后从空白开始输入你的注释"
+                                placeholder="输入你的中文释义"
                               />
                               <p className="text-xs text-stone-400">失焦保存，`Ctrl+Enter` 也可保存，`Esc` 取消。</p>
                             </div>
@@ -634,9 +636,7 @@ export default function VocabularyPage() {
                               onDoubleClick={() => startEditingWordMeaning(word.word, word.meaning)}
                             >
                               {word.meaning}
-                              {word.meaning === MISSING_MEANING_PLACEHOLDER ? (
-                                <span className="ml-2 text-xs text-[#a4955f]">双击可手动补充注释</span>
-                              ) : null}
+                              <span className="ml-2 text-xs text-[#a4955f]">双击可修改释义</span>
                             </p>
                           )}
                           <div className="flex flex-wrap gap-3 text-xs text-stone-500">

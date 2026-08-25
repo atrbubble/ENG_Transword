@@ -108,6 +108,7 @@ export interface DictionaryEntry {
 
 export interface SavedWord {
   word: string
+  matchedWord?: string
   meaning: string
   phonetic?: string
   partOfSpeech?: string
