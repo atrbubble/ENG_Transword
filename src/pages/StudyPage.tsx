@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom'
 import { AppShell } from '@/components/AppShell'
 import { StudyCard, type StudyStage } from '@/components/StudyCard'
 import { StudySummary } from '@/components/StudySummary'
+import { TodayReview, type TodayReviewWord } from '@/components/TodayReview'
 import { useStudyStore } from '@/store/useStudyStore'
 import type { SavedWord, StudyOrder, WordRating } from '@/types/study'
-import { buildDailyQueue, computeStudyStats } from '@/utils/spacedRepetition'
+import { buildDailyQueue, computeStudyStats, toDateKey, type RevealLevel } from '@/utils/spacedRepetition'
 
 const DAILY_OPTIONS = [10, 20, 30, 50]
 
@@ -16,6 +17,8 @@ const ORDER_OPTIONS: { value: StudyOrder; label: string }[] = [
   { value: 'sequential', label: '从早到晚' },
   { value: 'random', label: '随机' },
 ]
+
+const REVEAL_LEVEL: Record<StudyStage, RevealLevel> = { word: 0, sentence: 1, meaning: 2 }
 
 interface Session {
   queue: SavedWord[]
@@ -37,6 +40,7 @@ export default function StudyPage() {
   })
   const [stage, setStage] = useState<StudyStage>('word')
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [showTodayReview, setShowTodayReview] = useState(false)
 
   const current = session.queue[0]
   const hasSentence = Boolean(current?.sourceContext?.trim())
@@ -60,12 +64,12 @@ export default function StudyPage() {
   }, [hasSentence])
 
   const handleRate = useCallback(
-    (rating: WordRating) => {
+    (rating: WordRating, revealed: RevealLevel) => {
       if (!current) {
         return
       }
 
-      rateWord(current.word, rating)
+      rateWord(current.word, rating, revealed)
       setStage('word')
       setSession((prev) => {
         if (rating === 'again') {
@@ -90,19 +94,19 @@ export default function StudyPage() {
         return
       }
 
-      if (stage !== 'meaning') {
-        return
-      }
+      let rating: WordRating | null = null
 
       if (event.key === '1') {
-        event.preventDefault()
-        handleRate('good')
+        rating = 'good'
       } else if (event.key === '2') {
-        event.preventDefault()
-        handleRate('hard')
+        rating = 'hard'
       } else if (event.key === '3') {
+        rating = 'again'
+      }
+
+      if (rating) {
         event.preventDefault()
-        handleRate('again')
+        handleRate(rating, REVEAL_LEVEL[stage])
       }
     }
 
@@ -112,6 +116,25 @@ export default function StudyPage() {
   }, [stage, handleAdvance, handleRate])
 
   const stats = useMemo(() => computeStudyStats(wordProgress, new Date()), [wordProgress])
+
+  const todayStudied = useMemo(() => {
+    const todayKey = toDateKey(new Date())
+    const byWord = new Map(savedWords.map((saved) => [saved.word, saved]))
+    const result: TodayReviewWord[] = []
+
+    Object.entries(wordProgress)
+      .filter(([, progress]) => toDateKey(new Date(progress.lastReviewedAt)) === todayKey)
+      .sort(([, left], [, right]) => left.lastReviewedAt.localeCompare(right.lastReviewedAt))
+      .forEach(([word]) => {
+        const saved = byWord.get(word)
+
+        if (saved) {
+          result.push({ word, matchedWord: saved.matchedWord, meaning: saved.meaning })
+        }
+      })
+
+    return result
+  }, [wordProgress, savedWords])
 
   const progress = session.total ? Math.round((session.done / session.total) * 100) : 0
 
@@ -220,6 +243,20 @@ export default function StudyPage() {
               <StudySummary stats={stats} />
             </div>
 
+            <button
+              type="button"
+              onClick={() => setShowTodayReview((open) => !open)}
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#21352b]/30 bg-white px-5 py-3 text-sm text-[#21352b] transition hover:bg-[#f6f0e2]"
+            >
+              {showTodayReview ? '收起今日已学' : `查看今日已学（${todayStudied.length}）`}
+            </button>
+
+            {showTodayReview ? (
+              <div className="mt-6 text-left">
+                <TodayReview words={todayStudied} />
+              </div>
+            ) : null}
+
             <Link
               to="/vocabulary"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#21352b] px-5 py-3 text-sm text-[#f8f3e8] transition hover:bg-[#2b4739]"
@@ -234,7 +271,7 @@ export default function StudyPage() {
                 <span>
                   本组 {session.total} 词 · 已学 {session.done} 词
                 </span>
-                <span>快捷键：空格翻面，1/2/3 评分</span>
+                <span>快捷键：空格看提示，1/2/3 评分</span>
               </div>
               <div className="h-2 overflow-hidden rounded-full bg-stone-200/70">
                 <div

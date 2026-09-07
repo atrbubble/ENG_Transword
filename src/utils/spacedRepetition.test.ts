@@ -23,7 +23,7 @@ describe('gradeProgress', () => {
   const now = new Date(2026, 8, 7, 9, 0, 0)
 
   it('records firstSeenAt on the very first rating', () => {
-    const next = gradeProgress(undefined, 'abandon', 'again', now)
+    const next = gradeProgress(undefined, 'abandon', 'again', 1, now)
 
     expect(next.word).toBe('abandon')
     expect(next.firstSeenAt).toBe(now.toISOString())
@@ -33,7 +33,7 @@ describe('gradeProgress', () => {
   })
 
   it('schedules the first "good" three days out', () => {
-    const next = gradeProgress(undefined, 'abandon', 'good', now)
+    const next = gradeProgress(undefined, 'abandon', 'good', 1, now)
 
     expect(next.interval).toBe(3)
     expect(next.reps).toBe(1)
@@ -41,15 +41,15 @@ describe('gradeProgress', () => {
   })
 
   it('schedules the first "hard" one day out', () => {
-    const next = gradeProgress(undefined, 'abandon', 'hard', now)
+    const next = gradeProgress(undefined, 'abandon', 'hard', 1, now)
 
     expect(next.interval).toBe(1)
     expect(next.reps).toBe(1)
   })
 
   it('grows interval by ease on a repeat "good"', () => {
-    const first = gradeProgress(undefined, 'abandon', 'good', now)
-    const second = gradeProgress(first, 'abandon', 'good', now)
+    const first = gradeProgress(undefined, 'abandon', 'good', 1, now)
+    const second = gradeProgress(first, 'abandon', 'good', 1, now)
 
     // ease 2.5 -> 2.55 -> 2.6; interval 3 -> round(3 * 2.6) = 8
     expect(second.ease).toBeCloseTo(2.6)
@@ -58,8 +58,8 @@ describe('gradeProgress', () => {
   })
 
   it('resets progress and lowers ease on "again"', () => {
-    const learned = gradeProgress(undefined, 'abandon', 'good', now)
-    const again = gradeProgress(learned, 'abandon', 'again', now)
+    const learned = gradeProgress(undefined, 'abandon', 'good', 1, now)
+    const again = gradeProgress(learned, 'abandon', 'again', 1, now)
 
     expect(again.interval).toBe(0)
     expect(again.reps).toBe(0)
@@ -67,14 +67,30 @@ describe('gradeProgress', () => {
     // 之前的「good」已把 ease 提到 2.55，again 再降 0.2 → 2.35
     expect(again.ease).toBeCloseTo(2.35)
   })
+
+  it('weights a first "good" by how early it was revealed', () => {
+    const atWord = gradeProgress(undefined, 'abandon', 'good', 0, now)
+    const atSentence = gradeProgress(undefined, 'abandon', 'good', 1, now)
+    const atMeaning = gradeProgress(undefined, 'abandon', 'good', 2, now)
+
+    // 越早认出（看到的提示越少）→ 首次间隔越长
+    expect(atWord.interval).toBe(4)
+    expect(atSentence.interval).toBe(3)
+    expect(atMeaning.interval).toBe(1)
+
+    // ease 增量也随揭示层级递减：+0.15 / +0.05 / -0.05
+    expect(atWord.ease).toBeCloseTo(2.65)
+    expect(atSentence.ease).toBeCloseTo(2.55)
+    expect(atMeaning.ease).toBeCloseTo(2.45)
+  })
 })
 
 describe('buildDailyQueue', () => {
   const now = new Date(2026, 8, 7, 9, 0, 0)
   const yesterday = new Date(2026, 8, 6, 9, 0, 0)
   // 昨天首次学习、又答错 → 今天到期复习，且不占用今日新词配额
-  const dueProgress: WordProgress = gradeProgress(undefined, 'due', 'again', yesterday)
-  const futureProgress: WordProgress = gradeProgress(undefined, 'future', 'good', now)
+  const dueProgress: WordProgress = gradeProgress(undefined, 'due', 'again', 1, yesterday)
+  const futureProgress: WordProgress = gradeProgress(undefined, 'future', 'good', 1, now)
 
   it('puts due words first and fills the rest with new words', () => {
     const words = [makeWord('new'), makeWord('future'), makeWord('due')]
@@ -115,12 +131,12 @@ describe('computeStudyStats', () => {
     const dayBefore = new Date(2026, 8, 5, 9, 0, 0)
 
     const progress: Record<string, WordProgress> = {
-      fresh: gradeProgress(undefined, 'fresh', 'good', today),
-      reviewed: gradeProgress(undefined, 'reviewed', 'good', yesterday),
-      old: gradeProgress(undefined, 'old', 'good', dayBefore),
+      fresh: gradeProgress(undefined, 'fresh', 'good', 1, today),
+      reviewed: gradeProgress(undefined, 'reviewed', 'good', 1, yesterday),
+      old: gradeProgress(undefined, 'old', 'good', 1, dayBefore),
     }
     // 「reviewed」今天再复习一次
-    progress.reviewed = gradeProgress(progress.reviewed, 'reviewed', 'good', today)
+    progress.reviewed = gradeProgress(progress.reviewed, 'reviewed', 'good', 1, today)
 
     const stats = computeStudyStats(progress, today)
 

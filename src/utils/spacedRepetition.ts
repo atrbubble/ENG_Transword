@@ -42,16 +42,25 @@ export function toDateKey(date: Date) {
   return `${year}-${month}-${day}`
 }
 
+// 揭示层级：评分时已经看到了多少提示。
+// 0 = 只看单词；1 = 看到例句；2 = 看到释义。
+export type RevealLevel = 0 | 1 | 2
+
+// 「认识」的权重按揭示层级分档：零提示就想起来 → 记得更牢 → 间隔更长、ease 更高。
+const GOOD_EASE_DELTA: Record<RevealLevel, number> = { 0: 0.15, 1: 0.05, 2: -0.05 }
+const GOOD_FIRST_INTERVAL: Record<RevealLevel, number> = { 0: 4, 1: 3, 2: 1 }
+
 /**
  * 简化 SM-2 调度：根据本次评分推进单词的下次复习时间。
  * - again：归零间隔，当天再见；ease 下调，reps 清零，累计一次错误。
  * - hard：间隔按 1.2 倍增长（至少 1 天），ease 小幅下调。
- * - good：首次间隔 3 天，之后按 interval × ease 递增，ease 上调。
+ * - good：首次间隔与 ease 增量的强弱取决于 `revealed`（评分前看到了多少提示）。
  */
 export function gradeProgress(
   prev: WordProgress | undefined,
   word: string,
   rating: WordRating,
+  revealed: RevealLevel,
   now: Date,
 ): WordProgress {
   const ease = prev?.ease ?? EASE_DEFAULT
@@ -88,8 +97,10 @@ export function gradeProgress(
     }
   }
 
-  const nextEase = clamp(ease + 0.05, EASE_MIN, EASE_MAX)
-  const nextInterval = interval === 0 ? 3 : Math.max(1, Math.round(interval * nextEase))
+  const delta = GOOD_EASE_DELTA[revealed] ?? 0.05
+  const firstInterval = GOOD_FIRST_INTERVAL[revealed] ?? 3
+  const nextEase = clamp(ease + delta, EASE_MIN, EASE_MAX)
+  const nextInterval = interval === 0 ? firstInterval : Math.max(1, Math.round(interval * nextEase))
 
   return {
     word,

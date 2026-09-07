@@ -1,4 +1,5 @@
 import type { SavedWord, WordRating } from '@/types/study'
+import type { RevealLevel } from '@/utils/spacedRepetition'
 import { normalizeWord, shouldAppendSpace, tokenizeParagraph } from '@/utils/text'
 
 export type StudyStage = 'word' | 'sentence' | 'meaning'
@@ -68,7 +69,7 @@ interface StudyCardProps {
   word: SavedWord
   stage: StudyStage
   onAdvance: () => void
-  onRate: (rating: WordRating) => void
+  onRate: (rating: WordRating, revealed: RevealLevel) => void
 }
 
 export function StudyCard({ word, stage, onAdvance, onRate }: StudyCardProps) {
@@ -76,6 +77,7 @@ export function StudyCard({ word, stage, onAdvance, onRate }: StudyCardProps) {
   const hasSentence = Boolean(word.sourceContext?.trim())
   const showSentence = hasSentence && level >= 1
   const showMeaning = level >= 2
+  const revealed = level as RevealLevel
 
   const advanceHint =
     stage === 'word'
@@ -113,37 +115,35 @@ export function StudyCard({ word, stage, onAdvance, onRate }: StudyCardProps) {
       ) : null}
 
       {showMeaning ? (
-        <div className="mt-8 space-y-5">
-          <div className="rounded-[24px] border border-stone-200 bg-[#f6f0e2] px-6 py-5">
-            <p className="text-xs uppercase tracking-[0.18em] text-[#a4955f]">释义</p>
-            <p className="mt-3 text-lg leading-8 text-stone-800">{word.meaning}</p>
-            {word.sourcePaperTitle ? (
-              <p className="mt-3 text-xs text-stone-500">来源：{word.sourcePaperTitle}</p>
-            ) : null}
-          </div>
-
-          <div className="grid grid-cols-3 gap-3">
-            {RATING_OPTIONS.map((option) => (
-              <button
-                key={option.rating}
-                type="button"
-                onClick={(event) => {
-                  event.stopPropagation()
-                  onRate(option.rating)
-                }}
-                className={`rounded-2xl px-4 py-3 text-sm font-medium transition ${option.className}`}
-              >
-                {option.label}
-                <span className="ml-1 text-xs opacity-60">{option.key}</span>
-              </button>
-            ))}
-          </div>
+        <div className="mt-8 rounded-[24px] border border-stone-200 bg-[#f6f0e2] px-6 py-5">
+          <p className="text-xs uppercase tracking-[0.18em] text-[#a4955f]">释义</p>
+          <p className="mt-3 text-lg leading-8 text-stone-800">{word.meaning}</p>
+          {word.sourcePaperTitle ? (
+            <p className="mt-3 text-xs text-stone-500">来源：{word.sourcePaperTitle}</p>
+          ) : null}
         </div>
       ) : null}
 
       {advanceHint ? (
         <p className="mt-8 text-center text-sm text-stone-400">{advanceHint}</p>
       ) : null}
+
+      <div className="mt-4 grid grid-cols-3 gap-3">
+        {RATING_OPTIONS.map((option) => (
+          <button
+            key={option.rating}
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation()
+              onRate(option.rating, revealed)
+            }}
+            className={`rounded-2xl px-4 py-3 text-sm font-medium transition ${option.className}`}
+          >
+            {option.label}
+            <span className="ml-1 text-xs opacity-60">{option.key}</span>
+          </button>
+        ))}
+      </div>
     </div>
   )
 }
