@@ -1,11 +1,19 @@
-import { ArrowRight, BookCheck, BookMarked, Download, Search, Trash2, Upload } from 'lucide-react'
+import { ArrowRight, BookCheck, BookMarked, Brain, Download, Search, Trash2, Upload } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { AppShell } from '@/components/AppShell'
 import { useStudyStore } from '@/store/useStudyStore'
-import type { AnswerRecord, SavedPhrase, SavedWord, TextResponseRecord } from '@/types/study'
+import type {
+  AnswerRecord,
+  SavedPhrase,
+  SavedWord,
+  StudySettings,
+  TextResponseRecord,
+  WordProgress,
+} from '@/types/study'
 import { normalizePhraseKey, resolvePhraseMeaning } from '@/utils/collocations'
+import { buildDailyQueue, DEFAULT_STUDY_SETTINGS } from '@/utils/spacedRepetition'
 import { normalizeWord, shouldAppendSpace, tokenizeParagraph } from '@/utils/text'
 import { MISSING_MEANING_PLACEHOLDER } from '@/utils/study'
 
@@ -186,6 +194,8 @@ export default function VocabularyPage() {
   const deletePhrase = useStudyStore((state) => state.deletePhrase)
   const updateWordMeaning = useStudyStore((state) => state.updateWordMeaning)
   const updatePhrase = useStudyStore((state) => state.updatePhrase)
+  const wordProgress = useStudyStore((state) => state.wordProgress)
+  const studySettings = useStudyStore((state) => state.studySettings)
 
   const [mode, setMode] = useState<NotebookMode>('words')
   const [keyword, setKeyword] = useState('')
@@ -233,6 +243,11 @@ export default function VocabularyPage() {
         phrase.sourceContext?.toLowerCase().includes(normalizedKeyword),
     )
   }, [keyword, savedPhrases])
+
+  const studyQueue = useMemo(
+    () => buildDailyQueue(savedWords, wordProgress, studySettings, new Date()),
+    [savedWords, wordProgress, studySettings],
+  )
 
   const manualPhraseMatch = useMemo(() => resolvePhraseMeaning(phraseDraft), [phraseDraft])
   const manualPhraseKey = normalizePhraseKey(phraseDraft)
@@ -310,6 +325,8 @@ export default function VocabularyPage() {
         savedPhrases: state.savedPhrases,
         answerRecords: state.answerRecords,
         textResponseRecords: state.textResponseRecords,
+        wordProgress: state.wordProgress,
+        studySettings: state.studySettings,
       },
       null,
       2,
@@ -347,6 +364,8 @@ export default function VocabularyPage() {
           savedPhrases: SavedPhrase[]
           answerRecords: AnswerRecord[]
           textResponseRecords: TextResponseRecord[]
+          wordProgress: Record<string, WordProgress>
+          studySettings: StudySettings
         }>
 
         if (!Array.isArray(parsed.savedWords) || !Array.isArray(parsed.savedPhrases)) {
@@ -365,6 +384,14 @@ export default function VocabularyPage() {
           textResponseRecords: Array.isArray(parsed.textResponseRecords)
             ? parsed.textResponseRecords
             : [],
+          wordProgress:
+            parsed.wordProgress && typeof parsed.wordProgress === 'object'
+              ? parsed.wordProgress
+              : {},
+          studySettings: {
+            ...DEFAULT_STUDY_SETTINGS,
+            ...(parsed.studySettings ?? {}),
+          },
         })
       } catch {
         alert('读取备份文件失败，文件可能已损坏。')
@@ -527,6 +554,31 @@ export default function VocabularyPage() {
           </div>
 
           <div className="mt-6 space-y-4">
+            {mode === 'words' ? (
+              <Link
+                to="/study"
+                className="group flex items-center justify-between gap-4 rounded-[24px] border border-[#21352b]/20 bg-[#21352b] px-6 py-5 text-[#f6edd7] shadow-[0_16px_40px_rgba(33,53,43,0.16)] transition hover:bg-[#2b4739]"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-[#d8c78f]">
+                    <Brain className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-xl">
+                      背单词
+                    </p>
+                    <p className="mt-1 text-sm text-[#eadfbe]">
+                      间隔重复复习，把生词真正记牢 · 今日可背 {studyQueue.length} 词
+                    </p>
+                  </div>
+                </div>
+                <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm transition group-hover:bg-white/20">
+                  开始
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
+            ) : null}
+
             {mode === 'phrases' ? (
               <div className="rounded-[24px] border border-stone-200 bg-[#fbf8f1] p-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">

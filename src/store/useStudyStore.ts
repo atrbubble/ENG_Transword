@@ -6,9 +6,13 @@ import type {
   PhraseSelection,
   SavedPhrase,
   SavedWord,
+  StudySettings,
   TextResponseRecord,
+  WordProgress,
+  WordRating,
   WordSelection,
 } from '@/types/study'
+import { DEFAULT_STUDY_SETTINGS, gradeProgress } from '@/utils/spacedRepetition'
 import {
   MISSING_MEANING_PLACEHOLDER,
   removeSavedPhrase,
@@ -26,6 +30,8 @@ interface StudyState {
   savedPhrases: SavedPhrase[]
   answerRecords: AnswerRecord[]
   textResponseRecords: TextResponseRecord[]
+  wordProgress: Record<string, WordProgress>
+  studySettings: StudySettings
   saveWord: (selection: WordSelection) => void
   savePhrase: (selection: PhraseSelection) => void
   deleteWord: (word: string) => void
@@ -34,6 +40,8 @@ interface StudyState {
   updatePhrase: (key: string, phrase: string, meaning: string) => void
   setAnswer: (record: AnswerRecord) => void
   setTextResponse: (record: TextResponseRecord) => void
+  rateWord: (word: string, rating: WordRating) => void
+  setStudySettings: (partial: Partial<StudySettings>) => void
   isSaved: (word: string) => boolean
 }
 
@@ -44,6 +52,8 @@ export const useStudyStore = create<StudyState>()(
       savedPhrases: [],
       answerRecords: [],
       textResponseRecords: [],
+      wordProgress: {},
+      studySettings: DEFAULT_STUDY_SETTINGS,
       saveWord: (selection) =>
         set((state) => ({
           savedWords: upsertSavedWord(state.savedWords, {
@@ -111,6 +121,17 @@ export const useStudyStore = create<StudyState>()(
         set((state) => ({
           textResponseRecords: upsertTextResponseRecord(state.textResponseRecords, record),
         })),
+      rateWord: (word, rating) =>
+        set((state) => ({
+          wordProgress: {
+            ...state.wordProgress,
+            [word]: gradeProgress(state.wordProgress[word], word, rating, new Date()),
+          },
+        })),
+      setStudySettings: (partial) =>
+        set((state) => ({
+          studySettings: { ...state.studySettings, ...partial },
+        })),
       isSaved: (word) => get().savedWords.some((savedWord) => savedWord.word === word),
     }),
     {
@@ -121,6 +142,8 @@ export const useStudyStore = create<StudyState>()(
         savedPhrases: state.savedPhrases,
         answerRecords: state.answerRecords,
         textResponseRecords: state.textResponseRecords,
+        wordProgress: state.wordProgress,
+        studySettings: state.studySettings,
       }),
       merge: (persistedState, currentState) => {
         const typedState = persistedState as Partial<StudyState> | undefined
@@ -131,6 +154,8 @@ export const useStudyStore = create<StudyState>()(
           savedPhrases: typedState?.savedPhrases ?? currentState.savedPhrases,
           answerRecords: typedState?.answerRecords ?? currentState.answerRecords,
           textResponseRecords: typedState?.textResponseRecords ?? currentState.textResponseRecords,
+          wordProgress: typedState?.wordProgress ?? currentState.wordProgress,
+          studySettings: { ...currentState.studySettings, ...(typedState?.studySettings ?? {}) },
         }
       },
     },

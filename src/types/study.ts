@@ -191,3 +191,23 @@ export interface ActivePhraseSelection {
   startIndex: number
   endIndex: number
 }
+
+export type WordRating = 'again' | 'hard' | 'good'
+
+export interface WordProgress {
+  word: string
+  ease: number
+  interval: number
+  reps: number
+  nextReviewAt: string
+  firstSeenAt: string
+  lastReviewedAt: string
+  mistakes: number
+}
+
+export type StudyOrder = 'recent' | 'sequential' | 'random'
+
+export interface StudySettings {
+  dailyNewCount: number
+  order: StudyOrder
+}
