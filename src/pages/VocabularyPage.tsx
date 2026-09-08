@@ -1,8 +1,9 @@
-import { ArrowRight, BookCheck, BookMarked, Brain, Download, Search, Trash2, Upload } from 'lucide-react'
+import { ArrowRight, BadgeCheck, BookCheck, BookMarked, Brain, Download, Search, Trash2, Upload, X } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { AppShell } from '@/components/AppShell'
+import { TodayReview, type TodayReviewWord } from '@/components/TodayReview'
 import { useStudyStore } from '@/store/useStudyStore'
 import type {
   AnswerRecord,
@@ -13,11 +14,32 @@ import type {
   WordProgress,
 } from '@/types/study'
 import { normalizePhraseKey, resolvePhraseMeaning } from '@/utils/collocations'
-import { buildDailyQueue, DEFAULT_STUDY_SETTINGS } from '@/utils/spacedRepetition'
+import { buildDailyQueue, categorizeWords, DEFAULT_STUDY_SETTINGS, getWordStatus, type WordStatus } from '@/utils/spacedRepetition'
 import { normalizeWord, shouldAppendSpace, tokenizeParagraph } from '@/utils/text'
 import { MISSING_MEANING_PLACEHOLDER } from '@/utils/study'
 
 type NotebookMode = 'words' | 'phrases'
+
+type CategoryKey = 'unlearned' | 'learned' | 'mastered' | 'consolidating'
+
+const CATEGORY_TILES: { key: CategoryKey; label: string; className: string }[] = [
+  { key: 'unlearned', label: '未学', className: 'bg-stone-100 text-stone-600' },
+  { key: 'learned', label: '已学', className: 'bg-[#e8edf3] text-[#3a4a63]' },
+  { key: 'mastered', label: '已熟悉', className: 'bg-[#dceadf] text-[#2f5a3e]' },
+  { key: 'consolidating', label: '需巩固', className: 'bg-[#f4e3bd] text-[#8a6d1f]' },
+]
+
+const STATUS_BADGE: Record<WordStatus, { label: string; className: string }> = {
+  unlearned: { label: '未学', className: 'bg-stone-100 text-stone-500' },
+  learning: { label: '需巩固', className: 'bg-[#f4e3bd] text-[#8a6d1f]' },
+  mastered: { label: '已熟悉', className: 'bg-[#dceadf] text-[#2f5a3e]' },
+}
+
+const toReviewWord = (word: SavedWord): TodayReviewWord => ({
+  word: word.word,
+  matchedWord: word.matchedWord,
+  meaning: word.meaning,
+})
 
 function markTargetWordInContext(context: string, targetWord: string) {
   const tokens = tokenizeParagraph(context)
@@ -192,6 +214,7 @@ export default function VocabularyPage() {
   const savePhrase = useStudyStore((state) => state.savePhrase)
   const deleteWord = useStudyStore((state) => state.deleteWord)
   const deletePhrase = useStudyStore((state) => state.deletePhrase)
+  const markMastered = useStudyStore((state) => state.markMastered)
   const updateWordMeaning = useStudyStore((state) => state.updateWordMeaning)
   const updatePhrase = useStudyStore((state) => state.updatePhrase)
   const wordProgress = useStudyStore((state) => state.wordProgress)
@@ -199,6 +222,7 @@ export default function VocabularyPage() {
 
   const [mode, setMode] = useState<NotebookMode>('words')
   const [keyword, setKeyword] = useState('')
+  const [activeCategory, setActiveCategory] = useState<CategoryKey | null>(null)
   const [editingWord, setEditingWord] = useState<string | null>(null)
   const [draftMeaning, setDraftMeaning] = useState('')
   const [editingPhraseKey, setEditingPhraseKey] = useState<string | null>(null)
@@ -219,10 +243,10 @@ export default function VocabularyPage() {
 
     return savedWords.filter(
       (word) =>
-        word.word.includes(normalizedKeyword) ||
-        word.meaning.includes(normalizedKeyword) ||
-        word.sourcePaperTitle.includes(keyword.trim()) ||
-        word.sourceContext?.toLowerCase().includes(normalizedKeyword),
+        word.word.toLowerCase().includes(normalizedKeyword) ||
+        word.matchedWord?.toLowerCase().includes(normalizedKeyword) ||
+        word.meaning.toLowerCase().includes(normalizedKeyword) ||
+        word.sourcePaperTitle.toLowerCase().includes(normalizedKeyword),
     )
   }, [keyword, savedWords])
 
@@ -248,6 +272,8 @@ export default function VocabularyPage() {
     () => buildDailyQueue(savedWords, wordProgress, studySettings, new Date()),
     [savedWords, wordProgress, studySettings],
   )
+
+  const categories = useMemo(() => categorizeWords(savedWords, wordProgress), [savedWords, wordProgress])
 
   const manualPhraseMatch = useMemo(() => resolvePhraseMeaning(phraseDraft), [phraseDraft])
   const manualPhraseKey = normalizePhraseKey(phraseDraft)
@@ -579,6 +605,52 @@ export default function VocabularyPage() {
               </Link>
             ) : null}
 
+            {mode === 'words' && savedWords.length ? (
+              <div>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  {CATEGORY_TILES.map((tile) => (
+                    <button
+                      key={tile.key}
+                      type="button"
+                      onClick={() => setActiveCategory(activeCategory === tile.key ? null : tile.key)}
+                      className={`rounded-[20px] px-4 py-3 text-left transition ${
+                        activeCategory === tile.key ? 'ring-2 ring-[#21352b]/40' : ''
+                      } ${tile.className}`}
+                    >
+                      <p className="text-2xl font-medium">{categories[tile.key].length}</p>
+                      <p className="mt-1 text-xs">{tile.label}</p>
+                    </button>
+                  ))}
+                </div>
+
+                {activeCategory ? (
+                  <div className="mt-4 rounded-[24px] border border-stone-200 bg-[#fbf8f1] p-5">
+                    <div className="flex items-center justify-between">
+                      <p className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-lg text-[#21352b]">
+                        {CATEGORY_TILES.find((tile) => tile.key === activeCategory)?.label}（
+                        {categories[activeCategory].length}）
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => setActiveCategory(null)}
+                        className="inline-flex items-center gap-1 rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs text-stone-500 transition hover:border-[#21352b]/30 hover:text-[#21352b]"
+                      >
+                        <X className="h-3.5 w-3.5" />
+                        收起
+                      </button>
+                    </div>
+                    {categories[activeCategory].length ? (
+                      <div className="mt-4">
+                        <TodayReview words={categories[activeCategory].map(toReviewWord)} />
+                      </div>
+                    ) : (
+                      <p className="mt-4 text-sm text-stone-400">这一栏还没有单词。</p>
+                    )}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+
             {mode === 'phrases' ? (
               <div className="rounded-[24px] border border-stone-200 bg-[#fbf8f1] p-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
@@ -635,6 +707,8 @@ export default function VocabularyPage() {
               filteredWords.length ? (
                 filteredWords.map((word) => {
                   const reviewLink = buildReviewLink(word)
+                  const status = getWordStatus(wordProgress[word.word])
+                  const statusBadge = STATUS_BADGE[status]
 
                   return (
                     <article
@@ -652,6 +726,9 @@ export default function VocabularyPage() {
                                 </span>
                               ) : null}
                             </p>
+                            <span className={`rounded-full px-3 py-1 text-xs ${statusBadge.className}`}>
+                              {statusBadge.label}
+                            </span>
                             {word.partOfSpeech ? (
                               <span className="rounded-full bg-[#21352b]/8 px-3 py-1 text-xs text-[#21352b]">
                                 {word.partOfSpeech}
@@ -717,14 +794,26 @@ export default function VocabularyPage() {
                           ) : null}
                         </div>
 
-                        <button
-                          type="button"
-                          onClick={() => deleteWord(word.word)}
-                          className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm text-stone-600 transition hover:border-red-300 hover:text-red-500"
-                        >
-                          <Trash2 className="h-4 w-4" />
-                          移除
-                        </button>
+                        <div className="flex shrink-0 flex-col gap-2 md:items-end">
+                          {status !== 'mastered' ? (
+                            <button
+                              type="button"
+                              onClick={() => markMastered(word.word)}
+                              className="inline-flex items-center justify-center gap-2 rounded-full border border-[#2f5a3e]/30 bg-white px-4 py-2 text-sm text-[#2f5a3e] transition hover:bg-[#dceadf]"
+                            >
+                              <BadgeCheck className="h-4 w-4" />
+                              标记已熟悉
+                            </button>
+                          ) : null}
+                          <button
+                            type="button"
+                            onClick={() => deleteWord(word.word)}
+                            className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 bg-white px-4 py-2 text-sm text-stone-600 transition hover:border-red-300 hover:text-red-500"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                            移除
+                          </button>
+                        </div>
                       </div>
                     </article>
                   )

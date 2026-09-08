@@ -1,3 +1,5 @@
+import { ArrowRight } from 'lucide-react'
+
 import type { SavedWord, WordRating } from '@/types/study'
 import type { RevealLevel } from '@/utils/spacedRepetition'
 import { normalizeWord, shouldAppendSpace, tokenizeParagraph } from '@/utils/text'
@@ -68,19 +70,22 @@ const RATING_OPTIONS: RatingOption[] = [
 interface StudyCardProps {
   word: SavedWord
   stage: StudyStage
+  rated: boolean
   onAdvance: () => void
   onRate: (rating: WordRating, revealed: RevealLevel) => void
+  onNext: () => void
 }
 
-export function StudyCard({ word, stage, onAdvance, onRate }: StudyCardProps) {
+export function StudyCard({ word, stage, rated, onAdvance, onRate, onNext }: StudyCardProps) {
   const level = STAGE_ORDER[stage]
   const hasSentence = Boolean(word.sourceContext?.trim())
-  const showSentence = hasSentence && level >= 1
-  const showMeaning = level >= 2
+  const showSentence = hasSentence && (rated || level >= 1)
+  const showMeaning = rated || level >= 2
   const revealed = level as RevealLevel
 
-  const advanceHint =
-    stage === 'word'
+  const advanceHint = rated
+    ? null
+    : stage === 'word'
       ? hasSentence
         ? '点击卡片或按空格查看例句'
         : '点击卡片或按空格查看释义'
@@ -90,9 +95,11 @@ export function StudyCard({ word, stage, onAdvance, onRate }: StudyCardProps) {
 
   return (
     <div
-      onClick={showMeaning ? undefined : onAdvance}
+      onClick={rated ? onNext : showMeaning ? undefined : onAdvance}
       className={`min-h-[380px] rounded-[32px] border border-stone-900/10 bg-white/85 p-8 shadow-[0_30px_80px_rgba(33,53,43,0.12)] transition ${
-        showMeaning ? '' : 'cursor-pointer hover:border-[#21352b]/25 hover:shadow-[0_36px_90px_rgba(33,53,43,0.18)]'
+        rated || !showMeaning
+          ? 'cursor-pointer hover:border-[#21352b]/25 hover:shadow-[0_36px_90px_rgba(33,53,43,0.18)]'
+          : ''
       }`}
     >
       <div className="flex min-h-[120px] flex-col items-center justify-center text-center">
@@ -128,22 +135,39 @@ export function StudyCard({ word, stage, onAdvance, onRate }: StudyCardProps) {
         <p className="mt-8 text-center text-sm text-stone-400">{advanceHint}</p>
       ) : null}
 
-      <div className="mt-4 grid grid-cols-3 gap-3">
-        {RATING_OPTIONS.map((option) => (
+      {rated ? (
+        <div className="mt-4 flex justify-center">
           <button
-            key={option.rating}
             type="button"
             onClick={(event) => {
               event.stopPropagation()
-              onRate(option.rating, revealed)
+              onNext()
             }}
-            className={`rounded-2xl px-4 py-3 text-sm font-medium transition ${option.className}`}
+            className="inline-flex items-center gap-2 rounded-full bg-[#21352b] px-7 py-3 text-sm font-medium text-[#f8f3e8] transition hover:bg-[#2b4739]"
           >
-            {option.label}
-            <span className="ml-1 text-xs opacity-60">{option.key}</span>
+            下一个
+            <span className="text-xs opacity-60">空格</span>
+            <ArrowRight className="h-4 w-4" />
           </button>
-        ))}
-      </div>
+        </div>
+      ) : (
+        <div className="mt-4 grid grid-cols-3 gap-3">
+          {RATING_OPTIONS.map((option) => (
+            <button
+              key={option.rating}
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation()
+                onRate(option.rating, revealed)
+              }}
+              className={`rounded-2xl px-4 py-3 text-sm font-medium transition ${option.className}`}
+            >
+              {option.label}
+              <span className="ml-1 text-xs opacity-60">{option.key}</span>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

@@ -12,7 +12,7 @@ import type {
   WordRating,
   WordSelection,
 } from '@/types/study'
-import { DEFAULT_STUDY_SETTINGS, gradeProgress, type RevealLevel } from '@/utils/spacedRepetition'
+import { DEFAULT_STUDY_SETTINGS, gradeProgress, markMasteredProgress, type RevealLevel } from '@/utils/spacedRepetition'
 import {
   MISSING_MEANING_PLACEHOLDER,
   removeSavedPhrase,
@@ -41,6 +41,7 @@ interface StudyState {
   setAnswer: (record: AnswerRecord) => void
   setTextResponse: (record: TextResponseRecord) => void
   rateWord: (word: string, rating: WordRating, revealed: RevealLevel) => void
+  markMastered: (word: string) => void
   setStudySettings: (partial: Partial<StudySettings>) => void
   isSaved: (word: string) => boolean
 }
@@ -126,6 +127,13 @@ export const useStudyStore = create<StudyState>()(
           wordProgress: {
             ...state.wordProgress,
             [word]: gradeProgress(state.wordProgress[word], word, rating, revealed, new Date()),
+          },
+        })),
+      markMastered: (word) =>
+        set((state) => ({
+          wordProgress: {
+            ...state.wordProgress,
+            [word]: markMasteredProgress(state.wordProgress[word], word, new Date()),
           },
         })),
       setStudySettings: (partial) =>

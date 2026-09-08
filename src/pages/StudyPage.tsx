@@ -8,7 +8,7 @@ import { StudySummary } from '@/components/StudySummary'
 import { TodayReview, type TodayReviewWord } from '@/components/TodayReview'
 import { useStudyStore } from '@/store/useStudyStore'
 import type { SavedWord, StudyOrder, WordRating } from '@/types/study'
-import { buildDailyQueue, computeStudyStats, toDateKey, type RevealLevel } from '@/utils/spacedRepetition'
+import { buildDailyQueue, buildExtraQueue, categorizeWords, computeStudyStats, toDateKey, type ExtraMode, type RevealLevel } from '@/utils/spacedRepetition'
 
 const DAILY_OPTIONS = [10, 20, 30, 50]
 
@@ -41,6 +41,11 @@ export default function StudyPage() {
   const [stage, setStage] = useState<StudyStage>('word')
   const [settingsOpen, setSettingsOpen] = useState(false)
   const [showTodayReview, setShowTodayReview] = useState(false)
+  const [rated, setRated] = useState(false)
+  const [lastRating, setLastRating] = useState<WordRating | null>(null)
+  const [extraOpen, setExtraOpen] = useState(false)
+  const [extraMode, setExtraMode] = useState<ExtraMode>('new')
+  const [extraCount, setExtraCount] = useState(10)
 
   const current = session.queue[0]
   const hasSentence = Boolean(current?.sourceContext?.trim())
@@ -70,27 +75,45 @@ export default function StudyPage() {
       }
 
       rateWord(current.word, rating, revealed)
-      setStage('word')
-      setSession((prev) => {
-        if (rating === 'again') {
-          return { ...prev, queue: [...prev.queue.slice(1), current] }
-        }
-
-        return { ...prev, queue: prev.queue.slice(1), done: prev.done + 1 }
-      })
+      setLastRating(rating)
+      setStage('meaning')
+      setRated(true)
     },
     [current, rateWord],
   )
+
+  const handleNext = useCallback(() => {
+    if (!current) {
+      return
+    }
+
+    setSession((prev) => {
+      if (lastRating === 'again') {
+        return { ...prev, queue: [...prev.queue.slice(1), current] }
+      }
+
+      return { ...prev, queue: prev.queue.slice(1), done: prev.done + 1 }
+    })
+    setStage('word')
+    setRated(false)
+    setLastRating(null)
+  }, [current, lastRating])
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === ' ' || event.key === 'Enter') {
         event.preventDefault()
 
-        if (stage !== 'meaning') {
+        if (rated) {
+          handleNext()
+        } else if (stage !== 'meaning') {
           handleAdvance()
         }
 
+        return
+      }
+
+      if (rated) {
         return
       }
 
@@ -113,7 +136,7 @@ export default function StudyPage() {
     window.addEventListener('keydown', onKeyDown)
 
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [stage, handleAdvance, handleRate])
+  }, [stage, rated, handleAdvance, handleRate, handleNext])
 
   const stats = useMemo(() => computeStudyStats(wordProgress, new Date()), [wordProgress])
 
@@ -135,6 +158,26 @@ export default function StudyPage() {
 
     return result
   }, [wordProgress, savedWords])
+
+  const categories = useMemo(() => categorizeWords(savedWords, wordProgress), [savedWords, wordProgress])
+
+  const startExtra = () => {
+    const queue = buildExtraQueue(savedWords, wordProgress, studySettings.order, extraMode, extraCount)
+
+    if (!queue.length) {
+      return
+    }
+
+    setSession((prev) => ({
+      queue: [...prev.queue, ...queue],
+      total: prev.total + queue.length,
+      done: prev.done,
+    }))
+    setExtraOpen(false)
+    setStage('word')
+    setRated(false)
+    setLastRating(null)
+  }
 
   const progress = session.total ? Math.round((session.done / session.total) * 100) : 0
 
@@ -239,6 +282,66 @@ export default function StudyPage() {
               今天的新词和到期复习都已经背完，明天再来巩固吧。
             </p>
 
+            <button
+              type="button"
+              onClick={() => setExtraOpen((open) => !open)}
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#21352b] px-6 py-3 text-sm font-medium text-[#f8f3e8] transition hover:bg-[#2b4739]"
+            >
+              我还要继续卷！
+            </button>
+
+            {extraOpen ? (
+              <div className="mx-auto mt-5 max-w-md rounded-[24px] border border-stone-200 bg-[#fbf8f1] p-6 text-left">
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setExtraMode('new')}
+                    className={`flex-1 rounded-2xl border px-4 py-3 text-sm transition ${
+                      extraMode === 'new'
+                        ? 'border-[#21352b] bg-[#21352b] text-[#f8f3e8]'
+                        : 'border-stone-200 bg-white text-stone-600 hover:border-[#21352b]/30'
+                    }`}
+                  >
+                    学习新词
+                    <span className="block text-xs opacity-70">还有 {categories.unlearned.length} 个</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setExtraMode('review')}
+                    className={`flex-1 rounded-2xl border px-4 py-3 text-sm transition ${
+                      extraMode === 'review'
+                        ? 'border-[#21352b] bg-[#21352b] text-[#f8f3e8]'
+                        : 'border-stone-200 bg-white text-stone-600 hover:border-[#21352b]/30'
+                    }`}
+                  >
+                    复习巩固
+                    <span className="block text-xs opacity-70">可复习 {categories.learned.length} 个</span>
+                  </button>
+                </div>
+
+                <div className="mt-4 flex items-center gap-3">
+                  <label className="text-sm text-stone-600">个数</label>
+                  <input
+                    type="number"
+                    min={1}
+                    max={200}
+                    value={extraCount}
+                    onChange={(event) =>
+                      setExtraCount(Math.max(1, Math.min(200, Number(event.target.value) || 1)))
+                    }
+                    className="w-24 rounded-2xl border border-stone-200 bg-white px-3 py-2 text-sm text-stone-700 outline-none transition focus:border-[#21352b]/35"
+                  />
+                  <button
+                    type="button"
+                    onClick={startExtra}
+                    className="ml-auto rounded-full bg-[#21352b] px-5 py-2.5 text-sm text-[#f8f3e8] transition hover:bg-[#2b4739]"
+                  >
+                    开始
+                  </button>
+                </div>
+              </div>
+            ) : null}
+
             <div className="mt-8">
               <StudySummary stats={stats} />
             </div>
@@ -271,7 +374,7 @@ export default function StudyPage() {
                 <span>
                   本组 {session.total} 词 · 已学 {session.done} 词
                 </span>
-                <span>快捷键：空格看提示，1/2/3 评分</span>
+                <span>{rated ? '空格进入下一个' : '快捷键：空格看提示，1/2/3 评分'}</span>
               </div>
               <div className="h-2 overflow-hidden rounded-full bg-stone-200/70">
                 <div
@@ -281,7 +384,14 @@ export default function StudyPage() {
               </div>
             </div>
 
-            <StudyCard word={current} stage={stage} onAdvance={handleAdvance} onRate={handleRate} />
+            <StudyCard
+              word={current}
+              stage={stage}
+              rated={rated}
+              onAdvance={handleAdvance}
+              onRate={handleRate}
+              onNext={handleNext}
+            />
 
             <div className="mt-6">
               <StudySummary stats={stats} />

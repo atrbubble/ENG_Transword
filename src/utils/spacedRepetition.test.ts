@@ -3,9 +3,13 @@ import { describe, expect, it } from 'vitest'
 import type { SavedWord, WordProgress } from '@/types/study'
 import {
   buildDailyQueue,
+  categorizeWords,
   computeStudyStats,
   DEFAULT_STUDY_SETTINGS,
+  getWordStatus,
   gradeProgress,
+  MASTERED_INTERVAL_DAYS,
+  markMasteredProgress,
   toDateKey,
 } from '@/utils/spacedRepetition'
 
@@ -145,5 +149,42 @@ describe('computeStudyStats', () => {
     expect(stats.studiedToday).toBe(2)
     expect(stats.totalStudiedDays).toBe(3)
     expect(stats.streak).toBe(3)
+  })
+})
+
+describe('getWordStatus / categorizeWords / markMasteredProgress', () => {
+  const now = new Date(2026, 8, 7, 9, 0, 0)
+
+  it('classifies unlearned / learning / mastered by interval', () => {
+    expect(getWordStatus(undefined)).toBe('unlearned')
+
+    const learning = gradeProgress(undefined, 'abandon', 'good', 2, now)
+    expect(getWordStatus(learning)).toBe('learning')
+
+    const mastered = markMasteredProgress(undefined, 'abandon', now)
+    expect(getWordStatus(mastered)).toBe('mastered')
+  })
+
+  it('partitions saved words into the four categories', () => {
+    const words = [makeWord('fresh'), makeWord('learning'), makeWord('mastered')]
+    const progress: Record<string, WordProgress> = {
+      learning: gradeProgress(undefined, 'learning', 'hard', 1, now),
+      mastered: markMasteredProgress(undefined, 'mastered', now),
+    }
+
+    const categories = categorizeWords(words, progress)
+
+    expect(categories.unlearned.map((word) => word.word)).toEqual(['fresh'])
+    expect(categories.learned.map((word) => word.word).sort()).toEqual(['learning', 'mastered'])
+    expect(categories.mastered.map((word) => word.word)).toEqual(['mastered'])
+    expect(categories.consolidating.map((word) => word.word)).toEqual(['learning'])
+  })
+
+  it('marks a word mastered with a full interval and future review date', () => {
+    const next = markMasteredProgress(undefined, 'abandon', now)
+
+    expect(next.interval).toBe(MASTERED_INTERVAL_DAYS)
+    expect(next.ease).toBeGreaterThanOrEqual(2.8)
+    expect(toDateKey(new Date(next.nextReviewAt))).toBe('2026-09-17')
   })
 })

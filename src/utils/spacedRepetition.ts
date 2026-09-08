@@ -1,11 +1,11 @@
-import type { SavedWord, StudySettings, WordProgress, WordRating } from '@/types/study'
+import type { SavedWord, StudyOrder, StudySettings, WordProgress, WordRating } from '@/types/study'
 
 export const EASE_DEFAULT = 2.5
 export const EASE_MIN = 1.3
 export const EASE_MAX = 2.8
 
 // 连续「认识」达到该间隔天数后视为「已掌握」，用于统计掌握度分布。
-export const MASTERED_INTERVAL_DAYS = 21
+export const MASTERED_INTERVAL_DAYS = 10
 
 export const DEFAULT_STUDY_SETTINGS: StudySettings = {
   dailyNewCount: 20,
@@ -231,4 +231,111 @@ export function computeStudyStats(
     masteredCount,
     learningCount: entries.length - masteredCount,
   }
+}
+
+// 单词学习状态：未学 / 学习中（需巩固）/ 已熟悉（已掌握）。
+export type WordStatus = 'unlearned' | 'learning' | 'mastered'
+
+export function getWordStatus(entry: WordProgress | undefined): WordStatus {
+  if (!entry) {
+    return 'unlearned'
+  }
+
+  if (entry.interval >= MASTERED_INTERVAL_DAYS) {
+    return 'mastered'
+  }
+
+  return 'learning'
+}
+
+// 手动标记「已熟悉」：直接跳到掌握门槛，间隔满额后（10 天）再安排一次复习。
+export function markMasteredProgress(
+  prev: WordProgress | undefined,
+  word: string,
+  now: Date,
+): WordProgress {
+  return {
+    word,
+    ease: EASE_MAX,
+    interval: MASTERED_INTERVAL_DAYS,
+    reps: (prev?.reps ?? 0) + 1,
+    mistakes: prev?.mistakes ?? 0,
+    nextReviewAt: addDays(now, MASTERED_INTERVAL_DAYS).toISOString(),
+    firstSeenAt: prev?.firstSeenAt ?? now.toISOString(),
+    lastReviewedAt: now.toISOString(),
+  }
+}
+
+export interface WordCategories {
+  unlearned: SavedWord[]
+  learned: SavedWord[]
+  mastered: SavedWord[]
+  consolidating: SavedWord[]
+}
+
+export function categorizeWords(
+  savedWords: SavedWord[],
+  progress: Record<string, WordProgress>,
+): WordCategories {
+  const unlearned: SavedWord[] = []
+  const learned: SavedWord[] = []
+  const mastered: SavedWord[] = []
+  const consolidating: SavedWord[] = []
+
+  for (const word of savedWords) {
+    const status = getWordStatus(progress[word.word])
+
+    if (status === 'unlearned') {
+      unlearned.push(word)
+    } else {
+      learned.push(word)
+
+      if (status === 'mastered') {
+        mastered.push(word)
+      } else {
+        consolidating.push(word)
+      }
+    }
+  }
+
+  return { unlearned, learned, mastered, consolidating }
+}
+
+export type ExtraMode = 'new' | 'review'
+
+// 完成当日任务后的「继续卷」：额外取一批新词或复习词，走同样的背单词流程。
+export function buildExtraQueue(
+  savedWords: SavedWord[],
+  progress: Record<string, WordProgress>,
+  order: StudyOrder,
+  mode: ExtraMode,
+  count: number,
+): SavedWord[] {
+  const newWords: SavedWord[] = []
+  const reviewWords: { word: SavedWord; at: string }[] = []
+
+  for (const word of savedWords) {
+    const entry = progress[word.word]
+
+    if (!entry) {
+      newWords.push(word)
+    } else {
+      reviewWords.push({ word, at: entry.nextReviewAt })
+    }
+  }
+
+  if (mode === 'new') {
+    const ordered =
+      order === 'random'
+        ? shuffle(newWords)
+        : order === 'sequential'
+          ? [...newWords].reverse()
+          : newWords
+
+    return ordered.slice(0, count)
+  }
+
+  reviewWords.sort((left, right) => left.at.localeCompare(right.at))
+
+  return reviewWords.slice(0, count).map(({ word }) => word)
 }
