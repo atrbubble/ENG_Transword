@@ -1,9 +1,10 @@
-import { ArrowLeft, BookMarked, CheckCircle2, Settings2, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, BookMarked, CheckCircle2, Settings2, X } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { AppShell } from '@/components/AppShell'
-import { StudyCard, type StudyStage } from '@/components/StudyCard'
+import { HighlightedSentence } from '@/components/HighlightedSentence'
+import { RATING_OPTIONS, StudyCard, type StudyStage } from '@/components/StudyCard'
 import { useMediaQuery } from '@/lib/useMediaQuery'
 import { StudySummary } from '@/components/StudySummary'
 import { TodayReview, type TodayReviewWord } from '@/components/TodayReview'
@@ -46,6 +47,21 @@ function MobileStudyFullscreen({
   onRate: (rating: WordRating, revealed: RevealLevel) => void
   onNext: () => void
 }) {
+  const level: RevealLevel = stage === 'word' ? 0 : stage === 'sentence' ? 1 : 2
+  const hasSentence = Boolean(word.sourceContext?.trim())
+  const showSentence = hasSentence && (rated || level >= 1)
+  const showMeaning = rated || level >= 2
+
+  const advanceHint = rated
+    ? null
+    : stage === 'word'
+      ? hasSentence
+        ? '点击卡片查看例句'
+        : '点击卡片查看释义'
+      : stage === 'sentence'
+        ? '点击卡片查看释义'
+        : null
+
   return (
     <div className="fixed inset-0 z-40 flex flex-col bg-[radial-gradient(circle_at_top,_rgba(164,149,95,0.18),_transparent_38%),linear-gradient(180deg,_#f8f3e8_0%,_#efe5d0_45%,_#e7dac2_100%)] text-stone-900">
       <div className="flex items-center gap-3 px-4 pb-2 pt-[max(env(safe-area-inset-top),14px)]">
@@ -67,15 +83,71 @@ function MobileStudyFullscreen({
         </span>
       </div>
 
-      <div className="flex flex-1 items-center justify-center px-4 pb-[max(env(safe-area-inset-bottom),16px)]">
-        <StudyCard
-          word={word}
-          stage={stage}
-          rated={rated}
-          onAdvance={onAdvance}
-          onRate={onRate}
-          onNext={onNext}
-        />
+      <div
+        onClick={rated ? onNext : showMeaning ? undefined : onAdvance}
+        className={`flex-1 overflow-y-auto px-5 ${rated || !showMeaning ? 'cursor-pointer' : ''}`}
+      >
+        <div className="flex min-h-full flex-col justify-center gap-6 py-6">
+          <div className="text-center">
+            <p className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] break-words text-5xl leading-tight text-[#21352b]">
+              {word.word}
+            </p>
+            {word.matchedWord ? (
+              <span className="mt-2 block text-lg text-[#a4955f]">({word.matchedWord})</span>
+            ) : null}
+            {word.phonetic ? <p className="mt-2 text-sm text-stone-500">{word.phonetic}</p> : null}
+          </div>
+
+          {showSentence ? (
+            <div className="rounded-[20px] border border-stone-200 bg-[#fbf8f1] px-5 py-4">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#a4955f]">真题例句</p>
+              <p className="mt-2 text-base leading-8 text-stone-700">
+                <HighlightedSentence context={word.sourceContext!} word={word.word} />
+              </p>
+            </div>
+          ) : null}
+
+          {showMeaning ? (
+            <div className="rounded-[20px] border border-stone-200 bg-[#f6f0e2] px-5 py-4">
+              <p className="text-xs uppercase tracking-[0.18em] text-[#a4955f]">释义</p>
+              <p className="mt-2 text-lg leading-8 text-stone-800">{word.meaning}</p>
+              {word.sourcePaperTitle ? (
+                <p className="mt-2 text-xs text-stone-500">来源：{word.sourcePaperTitle}</p>
+              ) : null}
+            </div>
+          ) : null}
+
+          {advanceHint ? (
+            <p className="text-center text-sm text-stone-400">{advanceHint}</p>
+          ) : null}
+        </div>
+      </div>
+
+      <div className="px-4 pb-[max(env(safe-area-inset-bottom),16px)] pt-2">
+        {rated ? (
+          <button
+            type="button"
+            onClick={onNext}
+            className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#21352b] px-5 py-3.5 text-sm font-medium text-[#f8f3e8] transition hover:bg-[#2b4739]"
+          >
+            下一个
+            <ArrowRight className="h-4 w-4" />
+          </button>
+        ) : (
+          <div className="grid grid-cols-3 gap-3">
+            {RATING_OPTIONS.map((option) => (
+              <button
+                key={option.rating}
+                type="button"
+                onClick={() => onRate(option.rating, level)}
+                className={`rounded-2xl px-2 py-3.5 text-sm font-medium transition ${option.className}`}
+              >
+                {option.label}
+                <span className="ml-1 text-xs opacity-60">{option.key}</span>
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

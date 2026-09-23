@@ -2,7 +2,8 @@ import { ArrowRight } from 'lucide-react'
 
 import type { SavedWord, WordRating } from '@/types/study'
 import type { RevealLevel } from '@/utils/spacedRepetition'
-import { normalizeWord, shouldAppendSpace, tokenizeParagraph } from '@/utils/text'
+
+import { HighlightedSentence } from './HighlightedSentence'
 
 export type StudyStage = 'word' | 'sentence' | 'meaning'
 
@@ -12,33 +13,6 @@ const STAGE_ORDER: Record<StudyStage, number> = {
   meaning: 2,
 }
 
-function HighlightedSentence({ context, word }: { context: string; word: string }) {
-  const tokens = tokenizeParagraph(context)
-  const target = normalizeWord(word)
-
-  return (
-    <>
-      {tokens.map((token, index) => {
-        const spacing = shouldAppendSpace(token.value, tokens[index + 1]?.value) ? ' ' : ''
-        const isTarget = token.isWord && token.normalized === target
-
-        return (
-          <span key={`${token.value}-${index}`}>
-            {isTarget ? (
-              <span className="rounded-md bg-[#21352b] px-1.5 py-0.5 text-[#f7eed8]">
-                {token.value}
-              </span>
-            ) : (
-              token.value
-            )}
-            {spacing}
-          </span>
-        )
-      })}
-    </>
-  )
-}
-
 interface RatingOption {
   rating: WordRating
   label: string
@@ -46,7 +20,7 @@ interface RatingOption {
   className: string
 }
 
-const RATING_OPTIONS: RatingOption[] = [
+export const RATING_OPTIONS: RatingOption[] = [
   {
     rating: 'good',
     label: '认识',
