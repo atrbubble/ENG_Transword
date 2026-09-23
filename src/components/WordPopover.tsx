@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { BookmarkCheck, BookmarkPlus, Languages, X } from 'lucide-react'
+import { BookmarkCheck, BookmarkPlus, ExternalLink, Languages, X } from 'lucide-react'
 
 import type { WordSelection } from '@/types/study'
+import { openDoubao } from '@/utils/doubao'
 
 export interface PopoverAnchor {
   left: number
@@ -112,21 +113,31 @@ export function WordPopover({
         <p className="leading-7">{selection.entry.meaning}</p>
       </div>
 
-      <div className="mt-4 flex items-center justify-between gap-3">
-        <div className="text-xs leading-6 text-stone-500">
+      <div className="mt-4 space-y-3">
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => openDoubao(selection.normalized)}
+            className="inline-flex items-center gap-2 rounded-full border border-[#21352b]/30 bg-white px-4 py-2 text-sm text-[#21352b] transition hover:bg-[#f6f0e2]"
+          >
+            <ExternalLink className="h-4 w-4" />
+            查询
+          </button>
+          <button
+            type="button"
+            onClick={onSave}
+            disabled={isSaved}
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-[#21352b]/15 bg-[#21352b] px-4 py-2 text-sm text-[#f8f3e8] transition hover:bg-[#2b4739] disabled:cursor-not-allowed disabled:border-[#a4955f]/25 disabled:bg-[#a4955f] disabled:text-white"
+          >
+            {isSaved ? <BookmarkCheck className="h-4 w-4" /> : <BookmarkPlus className="h-4 w-4" />}
+            {isSaved ? '已在生词本' : '加入生词本'}
+          </button>
+        </div>
+        <p className="text-xs leading-6 text-stone-500">
           来源：{selection.paperTitle}
           <br />
-          提示：右键单词可在生词本一键加入/移除
-        </div>
-        <button
-          type="button"
-          onClick={onSave}
-          disabled={isSaved}
-          className="inline-flex items-center gap-2 rounded-full border border-[#21352b]/15 bg-[#21352b] px-4 py-2 text-sm text-[#f8f3e8] transition hover:bg-[#2b4739] disabled:cursor-not-allowed disabled:border-[#a4955f]/25 disabled:bg-[#a4955f] disabled:text-white"
-        >
-          {isSaved ? <BookmarkCheck className="h-4 w-4" /> : <BookmarkPlus className="h-4 w-4" />}
-          {isSaved ? '已在生词本' : '加入生词本'}
-        </button>
+          提示：点「查询」跳豆包 · 右键单词收藏/移除
+        </p>
       </div>
     </div>
   )

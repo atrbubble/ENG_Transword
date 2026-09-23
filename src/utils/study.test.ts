@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import type { AnswerRecord, SavedWord } from '@/types/study'
-import { removeSavedWord, upsertAnswerRecord, upsertSavedWord } from '@/utils/study'
+import { removeSavedWord, updateSavedWordMeaning, upsertAnswerRecord, upsertSavedWord } from '@/utils/study'
 import { buildLookupCandidates, findClosestDictionaryWord, normalizeWord, shouldAppendSpace, tokenizeParagraph } from '@/utils/text'
 
 describe('text utils', () => {
@@ -62,6 +62,12 @@ describe('study utils', () => {
 
   it('removes saved words by normalized word', () => {
     expect(removeSavedWord([sampleWord], 'discipline')).toHaveLength(0)
+  })
+
+  it('overwrites the meaning with a manually edited one', () => {
+    const updated = updateSavedWordMeaning([sampleWord], 'discipline', '纪律；自律')
+
+    expect(updated[0].meaning).toBe('纪律；自律')
   })
 
   it('replaces answer for the same question', () => {

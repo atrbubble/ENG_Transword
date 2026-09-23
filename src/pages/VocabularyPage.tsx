@@ -1,8 +1,9 @@
-import { ArrowRight, BadgeCheck, BookCheck, BookMarked, Brain, Download, Search, Trash2, Upload, X } from 'lucide-react'
+import { ArrowRight, BadgeCheck, BookCheck, BookMarked, Brain, Camera, Download, Plus, QrCode, Search, Trash2, Upload, X } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { AppShell } from '@/components/AppShell'
+import { SyncModal } from '@/components/SyncModal'
 import { TodayReview, type TodayReviewWord } from '@/components/TodayReview'
 import { useStudyStore } from '@/store/useStudyStore'
 import type {
@@ -17,6 +18,7 @@ import { normalizePhraseKey, resolvePhraseMeaning } from '@/utils/collocations'
 import { buildDailyQueue, categorizeWords, DEFAULT_STUDY_SETTINGS, getWordStatus, type WordStatus } from '@/utils/spacedRepetition'
 import { normalizeWord, shouldAppendSpace, tokenizeParagraph } from '@/utils/text'
 import { MISSING_MEANING_PLACEHOLDER } from '@/utils/study'
+import { resolveWordEntry } from '@/utils/wordLookup'
 
 type NotebookMode = 'words' | 'phrases'
 
@@ -80,7 +82,7 @@ function downloadVocabularyMd(words: ReturnType<typeof useStudyStore.getState>['
 
       details.push(`释义：${word.meaning}`)
 
-      lines.push(`- ${details.join('\n- ')}`, '', `来源：${word.sourcePaperTitle}`, '')
+      lines.push(`- ${details.join('\n- ')}`, '', `来源：${word.sourcePaperTitle || '手动录入'}`, '')
 
       if (word.sourceContext) {
         lines.push(`> ${markTargetWordInContext(word.sourceContext, word.word)}`, '')
@@ -212,6 +214,7 @@ export default function VocabularyPage() {
   const savedWords = useStudyStore((state) => state.savedWords)
   const savedPhrases = useStudyStore((state) => state.savedPhrases)
   const savePhrase = useStudyStore((state) => state.savePhrase)
+  const addWord = useStudyStore((state) => state.addWord)
   const deleteWord = useStudyStore((state) => state.deleteWord)
   const deletePhrase = useStudyStore((state) => state.deletePhrase)
   const markMastered = useStudyStore((state) => state.markMastered)
@@ -229,6 +232,9 @@ export default function VocabularyPage() {
   const [phraseMeaningDraft, setPhraseMeaningDraft] = useState('')
   const [phraseDraft, setPhraseDraft] = useState('')
   const [phraseNoteDraft, setPhraseNoteDraft] = useState('')
+  const [wordDraft, setWordDraft] = useState('')
+  const [wordMeaningDraft, setWordMeaningDraft] = useState('')
+  const [syncMode, setSyncMode] = useState<'send' | 'receive' | null>(null)
 
   useEffect(() => {
     document.title = 'Transword Archive | 生词本'
@@ -277,6 +283,18 @@ export default function VocabularyPage() {
 
   const manualPhraseMatch = useMemo(() => resolvePhraseMeaning(phraseDraft), [phraseDraft])
   const manualPhraseKey = normalizePhraseKey(phraseDraft)
+
+  const manualWordLookup = useMemo(
+    () => (wordDraft.trim() ? resolveWordEntry(wordDraft) : null),
+    [wordDraft],
+  )
+  const normalizedWordDraft = useMemo(() => normalizeWord(wordDraft), [wordDraft])
+  const manualWordAutoMeaning =
+    manualWordLookup && manualWordLookup.entry.meaning !== MISSING_MEANING_PLACEHOLDER
+      ? manualWordLookup.entry.meaning
+      : ''
+  const manualWordCanSave =
+    Boolean(normalizedWordDraft) && Boolean(wordMeaningDraft.trim() || manualWordAutoMeaning)
 
   const startEditingWordMeaning = (word: string, meaning: string) => {
     setEditingWord(word)
@@ -341,6 +359,27 @@ export default function VocabularyPage() {
 
     setPhraseDraft('')
     setPhraseNoteDraft('')
+  }
+
+  const handleManualWordSave = () => {
+    if (!manualWordCanSave) {
+      return
+    }
+
+    addWord(
+      wordDraft,
+      wordMeaningDraft.trim() || manualWordAutoMeaning,
+      manualWordLookup
+        ? {
+            matchedWord: manualWordLookup.matchedWord,
+            phonetic: manualWordLookup.entry.phonetic,
+            partOfSpeech: manualWordLookup.entry.partOfSpeech,
+          }
+        : undefined,
+    )
+
+    setWordDraft('')
+    setWordMeaningDraft('')
   }
 
   const handleExportBackup = () => {
@@ -448,7 +487,7 @@ export default function VocabularyPage() {
             : '回到真题阅读页，点击单词看释义，再右键加入生词本。'
           : savedPhrases.length
             ? '换个关键词试试，或者继续手动录入你的固定搭配。'
-            : '在做题页按住左键拖过多个单词，再右键即可加入词组本。'}
+            : '在这里手动录入固定搭配，就能沉淀进词组本。'}
       </p>
       <Link
         to="/"
@@ -463,7 +502,7 @@ export default function VocabularyPage() {
   return (
     <AppShell>
       <section className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr]">
-        <div className="rounded-[32px] border border-stone-900/10 bg-[#21352b] p-8 text-[#f6edd7] shadow-[0_30px_90px_rgba(33,53,43,0.18)]">
+        <div className="rounded-[32px] border border-stone-900/10 bg-[#21352b] p-6 text-[#f6edd7] shadow-[0_30px_90px_rgba(33,53,43,0.18)] sm:p-8">
           <p className="text-xs uppercase tracking-[0.24em] text-[#d8c78f]">Vocabulary Archive</p>
           <h1 className="mt-4 font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-4xl leading-tight">
             这里不止有单词，
@@ -471,7 +510,7 @@ export default function VocabularyPage() {
             现在也能沉淀整段词组。
           </h1>
           <p className="mt-6 text-sm leading-8 text-[#eadfbe]">
-            单词本负责积累词义，词组本负责沉淀固定搭配和你自己圈出来的重要表达。做题时拖选多个单词再右键，就能直接进入词组本。
+            单词本负责积累词义，词组本负责沉淀固定搭配（手动录入）。在真题里拖选句子后右键，可直接跳豆包查询意思。
           </p>
 
           <div className="mt-8 grid gap-4">
@@ -513,6 +552,31 @@ export default function VocabularyPage() {
                   onChange={handleImportBackup}
                 />
               </label>
+            </div>
+          </div>
+
+          <div className="mt-6 border-t border-white/10 pt-6">
+            <p className="text-xs uppercase tracking-[0.18em] text-[#d8c78f]">扫码同步</p>
+            <p className="mt-2 text-xs leading-6 text-[#eadfbe]">
+              无需账号，电脑生成二维码、手机扫码即可在两台设备间同步。
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => setSyncMode('send')}
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-[#f6edd7] transition hover:bg-white/20"
+              >
+                <QrCode className="h-4 w-4" />
+                生成二维码
+              </button>
+              <button
+                type="button"
+                onClick={() => setSyncMode('receive')}
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm text-[#f6edd7] transition hover:bg-white/20"
+              >
+                <Camera className="h-4 w-4" />
+                扫码接收
+              </button>
             </div>
           </div>
         </div>
@@ -651,6 +715,61 @@ export default function VocabularyPage() {
               </div>
             ) : null}
 
+            {mode === 'words' ? (
+              <div className="rounded-[24px] border border-stone-200 bg-[#fbf8f1] p-5">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="text-sm font-medium text-[#21352b]">手动加入单词</p>
+                    <p className="mt-1 text-xs leading-6 text-stone-500">
+                      这里可以自定义写入英文和中文释义；输入英文后会自动匹配词库，你也可以直接写自己的释义。
+                    </p>
+                  </div>
+                  {manualWordLookup?.matchedWord ? (
+                    <span className="rounded-full bg-[#21352b]/8 px-3 py-1 text-xs text-[#21352b]">
+                      自动匹配：{manualWordLookup.matchedWord}
+                    </span>
+                  ) : null}
+                </div>
+                <div className="mt-4 grid gap-3">
+                  <input
+                    value={wordDraft}
+                    onChange={(event) => setWordDraft(event.target.value)}
+                    className="rounded-2xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-700 outline-none transition focus:border-[#21352b]/35"
+                    placeholder="输入英文单词，比如 abandon"
+                  />
+                  <textarea
+                    value={wordMeaningDraft}
+                    onChange={(event) => setWordMeaningDraft(event.target.value)}
+                    rows={2}
+                    className="rounded-2xl border border-stone-200 bg-white px-4 py-3 text-sm leading-7 text-stone-700 outline-none transition focus:border-[#21352b]/35"
+                    placeholder={
+                      manualWordAutoMeaning
+                        ? `留空将自动使用：${manualWordAutoMeaning}`
+                        : '输入中文释义'
+                    }
+                  />
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <p className="text-xs text-stone-500">
+                      {normalizedWordDraft
+                        ? manualWordCanSave
+                          ? '可以保存到生词本。'
+                          : '请填写中文释义，或留空使用词库释义。'
+                        : '请输入英文单词。'}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleManualWordSave}
+                      disabled={!manualWordCanSave}
+                      className="inline-flex items-center gap-2 rounded-full bg-[#21352b] px-5 py-2 text-sm text-[#f8f3e8] transition hover:bg-[#2b4739] disabled:cursor-not-allowed disabled:bg-stone-300"
+                    >
+                      <Plus className="h-4 w-4" />
+                      保存单词
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+
             {mode === 'phrases' ? (
               <div className="rounded-[24px] border border-stone-200 bg-[#fbf8f1] p-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
@@ -718,7 +837,7 @@ export default function VocabularyPage() {
                       <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                         <div className="space-y-2">
                           <div className="flex flex-wrap items-center gap-3">
-                            <p className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-3xl text-[#21352b]">
+                            <p className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-2xl text-[#21352b] sm:text-3xl">
                               {word.word}
                               {word.matchedWord ? (
                                 <span className="ml-2 text-xl text-[#a4955f]">
@@ -769,7 +888,9 @@ export default function VocabularyPage() {
                             </p>
                           )}
                           <div className="flex flex-wrap gap-3 text-xs text-stone-500">
-                            <span className="rounded-full bg-white px-3 py-2">{word.sourcePaperTitle}</span>
+                            <span className="rounded-full bg-white px-3 py-2">
+                              {word.sourcePaperTitle || '手动录入'}
+                            </span>
                           </div>
                           {word.sourceContext ? (
                             <div className="rounded-[20px] border border-stone-200/90 bg-white/75 px-4 py-4">
@@ -941,6 +1062,8 @@ export default function VocabularyPage() {
           </div>
         </div>
       </section>
+
+      {syncMode ? <SyncModal mode={syncMode} onClose={() => setSyncMode(null)} /> : null}
     </AppShell>
   )
 }

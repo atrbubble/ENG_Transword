@@ -1,9 +1,10 @@
-import { ArrowLeft, BookMarked, CheckCircle2, Settings2 } from 'lucide-react'
+import { ArrowLeft, BookMarked, CheckCircle2, Settings2, X } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { AppShell } from '@/components/AppShell'
 import { StudyCard, type StudyStage } from '@/components/StudyCard'
+import { useMediaQuery } from '@/lib/useMediaQuery'
 import { StudySummary } from '@/components/StudySummary'
 import { TodayReview, type TodayReviewWord } from '@/components/TodayReview'
 import { useStudyStore } from '@/store/useStudyStore'
@@ -26,6 +27,60 @@ interface Session {
   done: number
 }
 
+function MobileStudyFullscreen({
+  word,
+  stage,
+  rated,
+  session,
+  progress,
+  onAdvance,
+  onRate,
+  onNext,
+}: {
+  word: SavedWord
+  stage: StudyStage
+  rated: boolean
+  session: Session
+  progress: number
+  onAdvance: () => void
+  onRate: (rating: WordRating, revealed: RevealLevel) => void
+  onNext: () => void
+}) {
+  return (
+    <div className="fixed inset-0 z-40 flex flex-col bg-[radial-gradient(circle_at_top,_rgba(164,149,95,0.18),_transparent_38%),linear-gradient(180deg,_#f8f3e8_0%,_#efe5d0_45%,_#e7dac2_100%)] text-stone-900">
+      <div className="flex items-center gap-3 px-4 pb-2 pt-[max(env(safe-area-inset-top),14px)]">
+        <Link
+          to="/vocabulary"
+          className="rounded-full bg-white/80 p-2 text-[#21352b] shadow-sm transition hover:bg-white"
+          aria-label="退出背单词"
+        >
+          <X className="h-5 w-5" />
+        </Link>
+        <div className="h-2 flex-1 overflow-hidden rounded-full bg-stone-200/70">
+          <div
+            className="h-full rounded-full bg-[#21352b] transition-all duration-300"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+        <span className="text-xs tabular-nums text-stone-500">
+          {session.done}/{session.total}
+        </span>
+      </div>
+
+      <div className="flex flex-1 items-center justify-center px-4 pb-[max(env(safe-area-inset-bottom),16px)]">
+        <StudyCard
+          word={word}
+          stage={stage}
+          rated={rated}
+          onAdvance={onAdvance}
+          onRate={onRate}
+          onNext={onNext}
+        />
+      </div>
+    </div>
+  )
+}
+
 export default function StudyPage() {
   const savedWords = useStudyStore((state) => state.savedWords)
   const wordProgress = useStudyStore((state) => state.wordProgress)
@@ -46,6 +101,7 @@ export default function StudyPage() {
   const [extraOpen, setExtraOpen] = useState(false)
   const [extraMode, setExtraMode] = useState<ExtraMode>('new')
   const [extraCount, setExtraCount] = useState(10)
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   const current = session.queue[0]
   const hasSentence = Boolean(current?.sourceContext?.trim())
@@ -180,6 +236,21 @@ export default function StudyPage() {
   }
 
   const progress = session.total ? Math.round((session.done / session.total) * 100) : 0
+
+  if (isMobile && current) {
+    return (
+      <MobileStudyFullscreen
+        word={current}
+        stage={stage}
+        rated={rated}
+        session={session}
+        progress={progress}
+        onAdvance={handleAdvance}
+        onRate={handleRate}
+        onNext={handleNext}
+      />
+    )
+  }
 
   return (
     <AppShell>

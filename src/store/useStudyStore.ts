@@ -13,6 +13,7 @@ import type {
   WordSelection,
 } from '@/types/study'
 import { DEFAULT_STUDY_SETTINGS, gradeProgress, markMasteredProgress, type RevealLevel } from '@/utils/spacedRepetition'
+import { normalizeWord } from '@/utils/text'
 import {
   MISSING_MEANING_PLACEHOLDER,
   removeSavedPhrase,
@@ -33,6 +34,11 @@ interface StudyState {
   wordProgress: Record<string, WordProgress>
   studySettings: StudySettings
   saveWord: (selection: WordSelection) => void
+  addWord: (
+    word: string,
+    meaning: string,
+    lookup?: { matchedWord?: string; phonetic?: string; partOfSpeech?: string },
+  ) => void
   savePhrase: (selection: PhraseSelection) => void
   deleteWord: (word: string) => void
   deletePhrase: (key: string) => void
@@ -73,6 +79,47 @@ export const useStudyStore = create<StudyState>()(
             createdAt: new Date().toISOString(),
           }),
         })),
+      addWord: (word, meaning, lookup) =>
+        set((state) => {
+          const normalized = normalizeWord(word)
+
+          if (!normalized) {
+            return {}
+          }
+
+          const cleanMeaning = meaning.trim() || MISSING_MEANING_PLACEHOLDER
+          const existing = state.savedWords.find((saved) => saved.word === normalized)
+
+          // 已收藏过该单词：只更新释义，保留来源信息；否则新建一条无来源的手动单词。
+          if (existing) {
+            return {
+              savedWords: state.savedWords.map((saved) =>
+                saved.word === normalized
+                  ? {
+                      ...saved,
+                      meaning: cleanMeaning,
+                      matchedWord: saved.matchedWord ?? lookup?.matchedWord,
+                      phonetic: saved.phonetic ?? lookup?.phonetic,
+                      partOfSpeech: saved.partOfSpeech ?? lookup?.partOfSpeech,
+                    }
+                  : saved,
+              ),
+            }
+          }
+
+          return {
+            savedWords: upsertSavedWord(state.savedWords, {
+              word: normalized,
+              meaning: cleanMeaning,
+              matchedWord: lookup?.matchedWord,
+              phonetic: lookup?.phonetic,
+              partOfSpeech: lookup?.partOfSpeech,
+              sourcePaperId: '',
+              sourcePaperTitle: '',
+              createdAt: new Date().toISOString(),
+            }),
+          }
+        }),
       savePhrase: (selection) =>
         set((state) => ({
           savedPhrases: upsertSavedPhrase(state.savedPhrases, {

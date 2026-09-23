@@ -103,7 +103,7 @@ export function StudyCard({ word, stage, rated, onAdvance, onRate, onNext }: Stu
       }`}
     >
       <div className="flex min-h-[120px] flex-col items-center justify-center text-center">
-        <p className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] text-6xl leading-tight text-[#21352b]">
+        <p className="font-['Iowan_Old_Style','Palatino_Linotype','Book_Antiqua',serif] break-words text-5xl leading-tight text-[#21352b] sm:text-6xl">
           {word.word}
         </p>
         {word.matchedWord ? (

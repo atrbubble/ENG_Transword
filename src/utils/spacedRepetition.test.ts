@@ -125,6 +125,21 @@ describe('buildDailyQueue', () => {
 
     expect(queue.map((word) => word.word)).toEqual(['new3', 'new2', 'new1'])
   })
+
+  it('includes manually added words that carry no paper source', () => {
+    const manual: SavedWord = {
+      word: 'customword',
+      meaning: '自定义释义',
+      sourcePaperId: '',
+      sourcePaperTitle: '',
+      createdAt: '2026-06-13T10:00:00.000Z',
+    }
+    const queue = buildDailyQueue([manual, makeWord('sourced')], {}, DEFAULT_STUDY_SETTINGS, now)
+
+    expect(queue.map((word) => word.word)).toEqual(
+      expect.arrayContaining(['customword', 'sourced']),
+    )
+  })
 })
 
 describe('computeStudyStats', () => {

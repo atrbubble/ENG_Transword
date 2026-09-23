@@ -14,7 +14,6 @@ import { PassageReader } from '@/components/PassageReader'
 import { QuestionPanel } from '@/components/QuestionPanel'
 import { TranslationResponsePanel, WritingResponsePanel } from '@/components/TextResponsePanel'
 import { WordPopover, type PopoverAnchor } from '@/components/WordPopover'
-import { dictionary } from '@/data/dictionary'
 import { examPaperMap } from '@/data/examPapers'
 import { cn } from '@/lib/utils'
 import { useStudyStore } from '@/store/useStudyStore'
@@ -25,19 +24,11 @@ import type {
   ExamQuestion,
   ExamSection,
   PhraseContextSelection,
-  PhraseSelection,
   WordSelection,
 } from '@/types/study'
-import {
-  buildLookupCandidates,
-  extractSentenceForPhrase,
-  extractSentenceForWord,
-  findClosestDictionaryWord,
-  normalizeWord,
-  sanitizeDisplayText,
-} from '@/utils/text'
-import { normalizePhraseKey, resolvePhraseMeaning } from '@/utils/collocations'
-import { MISSING_MEANING_PLACEHOLDER } from '@/utils/study'
+import { extractSentenceForWord, normalizeWord, sanitizeDisplayText } from '@/utils/text'
+import { openDoubao } from '@/utils/doubao'
+import { resolveWordEntry } from '@/utils/wordLookup'
 
 function buildSelection(
   rawWord: string,
@@ -51,26 +42,17 @@ function buildSelection(
     sourceContext?: string
   } = {},
 ): WordSelection | null {
-  const normalized = normalizeWord(rawWord)
+  const resolved = resolveWordEntry(rawWord)
 
-  if (!normalized) {
+  if (!resolved) {
     return null
-  }
-
-  const matchedWord = buildLookupCandidates(rawWord).find((candidate) => dictionary[candidate])
-  const closestWord = matchedWord ? null : findClosestDictionaryWord(normalized, dictionary)
-  const resolvedWord = matchedWord ?? closestWord
-  const entry = (resolvedWord ? dictionary[resolvedWord] : undefined) ?? {
-    word: normalized,
-    meaning: MISSING_MEANING_PLACEHOLDER,
-    source: 'fallback',
   }
 
   return {
     raw: rawWord,
-    normalized,
-    entry,
-    matchedWord: resolvedWord && resolvedWord !== normalized ? resolvedWord : undefined,
+    normalized: resolved.normalized,
+    entry: resolved.entry,
+    matchedWord: resolved.matchedWord,
     paperId,
     paperTitle,
     sourceSectionId: metadata.sourceSectionId,
@@ -78,42 +60,6 @@ function buildSelection(
     sourcePassageId: metadata.sourcePassageId,
     sourcePassageLabel: metadata.sourcePassageLabel,
     sourceContext: metadata.sourceContext,
-  }
-}
-
-function buildPhraseSelection(
-  phrase: string,
-  metadata: {
-    sourcePaperId?: string
-    sourcePaperTitle?: string
-    sourceSectionId?: string
-    sourceSectionTitle?: string
-    sourcePassageId?: string
-    sourcePassageLabel?: string
-    sourceContext?: string
-  } = {},
-): PhraseSelection | null {
-  const normalized = normalizePhraseKey(phrase)
-
-  if (normalized.split(' ').filter(Boolean).length < 2) {
-    return null
-  }
-
-  const matched = resolvePhraseMeaning(phrase)
-
-  return {
-    phrase: phrase.trim(),
-    normalized,
-    meaning: matched.meaning,
-    sourcePaperId: metadata.sourcePaperId,
-    sourcePaperTitle: metadata.sourcePaperTitle,
-    sourceSectionId: metadata.sourceSectionId,
-    sourceSectionTitle: metadata.sourceSectionTitle,
-    sourcePassageId: metadata.sourcePassageId,
-    sourcePassageLabel: metadata.sourcePassageLabel,
-    sourceContext: metadata.sourceContext,
-    matchedCollocation: matched.matchedCollocation,
-    matchedCategory: matched.matchedCategory,
   }
 }
 
@@ -161,7 +107,6 @@ export default function ExamPage() {
   const [searchParams] = useSearchParams()
   const paper = examPaperMap.get(paperId)
   const savedWords = useStudyStore((state) => state.savedWords)
-  const savePhrase = useStudyStore((state) => state.savePhrase)
   const answerRecords = useStudyStore((state) => state.answerRecords)
   const textResponseRecords = useStudyStore((state) => state.textResponseRecords)
   const saveWord = useStudyStore((state) => state.saveWord)
@@ -448,21 +393,12 @@ export default function ExamPage() {
     }
 
     const phraseText = getPhraseText(currentSelection)
-    const nextPhrase = buildPhraseSelection(phraseText, {
-      sourcePaperId: paper.id,
-      sourcePaperTitle: `${paper.title} ${activeSection.title}${activePassage ? ` ${activePassage.label.toUpperCase()}` : ''}`,
-      sourceSectionId: activeSection.id,
-      sourceSectionTitle: activeSection.title,
-      sourcePassageId: activePassage?.id,
-      sourcePassageLabel: activePassage?.label,
-      sourceContext: extractSentenceForPhrase(currentSelection.context, phraseText),
-    })
 
-    if (!nextPhrase) {
+    if (!phraseText.trim()) {
       return
     }
 
-    savePhrase(nextPhrase)
+    openDoubao(phraseText)
     setPhraseSelection(currentSelection)
     setDraggingPhrase(null)
     setSuppressNextWordClick(false)
@@ -606,7 +542,7 @@ export default function ExamPage() {
                   </>
                 ) : null}
                 {activeSection.kind !== 'writing' ? <span className="h-px w-12 bg-stone-200" /> : null}
-                <span>点击单词查义 / 拖选词组右键收藏</span>
+                <span>点击单词查义 / 拖选句子右键查豆包</span>
               </div>
 
               <div className="mb-6 flex flex-wrap gap-3">
@@ -828,9 +764,10 @@ export default function ExamPage() {
               <h2 className="text-lg font-medium">本页可用交互</h2>
             </div>
             <div className="mt-4 space-y-3 text-sm leading-7 text-[#eadfbe]">
-              <p>1. 左侧正文里点击单词，立即显示中文意思。</p>
-              <p>2. 右键单词：第一次加入生词本，再次右键移除。</p>
-              <p>3. 右侧每道题题号前都能直接选 A/B/C/D。</p>
+              <p>1. 点击单词：立即显示中文，可点「查询」跳豆包。</p>
+              <p>2. 右键单词：加入 / 移出生词本。</p>
+              <p>3. 拖选句子后右键：跳豆包查询意思。</p>
+              <p>4. 右侧每道题题号前都能直接选 A/B/C/D。</p>
             </div>
           </div>
 
